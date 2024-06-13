@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-    <div class="flex justify-center container mx-auto px-4">
+    <div class="flex justify-center container mx-auto px-4 w-full min-h-screen">
         <div class="flex justify-center">
             <div class="w-full max-w-2xl">
                 <div class="bg-white dark:bg-gray-800 shadow-md rounded-lg">
@@ -18,7 +18,7 @@
                     </div>
                 </div>
                 <!-- Enlace de "volver" para regresar a la lista de sucursales -->
-                <a href="{{ route('visitante.index') }}" class="inline-block bg-gray-500 text-white py-2 px-4 rounded mt-4 hover:bg-gray-600">{{ __('Back to Branches') }}</a>
+                <a href="{{ route('visitante.index') }}" class="inline-block bg-gray-500 text-white py-2 px-4 rounded mt-4 hover:bg-gray-600">{{ __('Volver a sucursales') }}</a>
             </div>
         </div>
     </div>

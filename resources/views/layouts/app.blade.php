@@ -58,10 +58,20 @@
             </div>
             @endauth
         </main>
-
+        @auth
+            @if(Auth::user()->hasRole('admin'))
+            <footer></footer>
+            @else
+            <footer>
+                @include('elements.footer')
+            </footer>
+            @endif
+        @else
         <footer>
             @include('elements.footer')
         </footer>
+        @endauth
+           
 
     </div>
     </div>

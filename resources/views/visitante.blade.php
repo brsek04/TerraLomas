@@ -20,8 +20,8 @@
             </div>
         </div>
     </div>
-    <div class="relative flex-grow w-full flex justify-center bg-gray-900 pt-4">
-        <div class="absolute inset-0 bg-cover bg-no-repeat bg-end blur-[10px]" style="background-image: url('images/logos/appsbg.jpg'); transform: scaleX(-1); backdrop-filter: blur(10px);"></div>
+    <div class="relative flex-grow w-full  flex justify-center bg-gray-900 mt-4">
+        <div class="absolute h-full  item  inset-0 bg-cover bg-no-repeat bg-end blur-[10px]" style="background-image: url('images/logos/appsbg.jpg'); transform: scaleX(-1); backdrop-filter: blur(10px);"></div>
         <div class="w-full"> 
             <div class="relative flex p-10 rounded-lg"  >
                 <div class="bg-white flex flex-col p-4 sm:p-10 md:max-w-2xl mx-auto rounded-lg" style="background-color: rgba(255, 255, 255, 0.514);">
