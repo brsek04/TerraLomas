@@ -35,7 +35,7 @@ class AdminController extends Controller
         }
 
         // Cuenta los usuarios que no tienen roles
-        $userCountsByRole['sin roles'] = User::doesntHave('roles')->count();
+        $userCountsByRole['clientes'] = User::doesntHave('roles')->count();
 
         // Obtener los datos necesarios para los gráficos
         $branchCount = Branch::count();
