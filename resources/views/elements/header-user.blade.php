@@ -37,6 +37,18 @@
         </div>
        
     </div>
+    
+    
+
+
+
+
+
+
+
+
+
+
     <div class="flex flex-wrap items-center justify-between flex-grow md:pl-12 w-full bg-gray-900 bg-opacity-75 py-4 px-10">
         <div class="flex items-center space-x-6 capitalize">
             <a href="{{ route('visitante.index') }}" class="text-orange-300 hover:text-white transition">Sucursales</a>
@@ -168,3 +180,30 @@
 -->
 
 
+<div class="md:hidden">
+    <div class="fixed inset-0 z-50 bg-gray-900 bg-opacity-75" id="mobile-menu-overlay" style="display: none;"></div>
+    <div class="fixed inset-y-0 left-0 z-50 w-64 bg-white overflow-y-auto" id="mobile-menu" style="display: none;">
+        <div class="py-6 px-4">
+            <div class="flex items-center justify-between mb-8">
+                <span class="text-2xl font-bold text-gray-900">Menu</span>
+                <button class="text-gray-900 focus:outline-none" id="mobile-menu-close">Cerrar</button>
+            </div>
+            <div class="space-y-4">
+                <a href="{{ route('visitante.index') }}" class="block text-gray-900 hover:text-gray-700">Sucursales</a>
+                <a href="#" class="block text-gray-900 hover:text-gray-700">Nosotros</a>
+                <a href="#" class="block text-gray-900 hover:text-gray-700">Destacados</a>
+                <a href="#" class="block text-gray-900 hover:text-gray-700">Convenios</a>
+                @if(\Illuminate\Support\Facades\Auth::check())
+                <a href="#" class="block text-gray-900 hover:text-gray-700">Dashboard</a>
+                <a href="#" class="block text-gray-900 hover:text-gray-700">Configuración</a>
+                <a href="{{ route('logout') }}" class="block text-gray-900 hover:text-gray-700" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Cerrar Sesión</a>
+                <form id="logout-form" action="{{ route('logout') }}" method="POST" class="hidden">
+                    @csrf
+                </form>
+                @else
+                <a href="{{ route('login') }}" class="block text-gray-900 hover:text-gray-700">Login</a>
+                @endif
+            </div>
+        </div>
+    </div>
+</div>

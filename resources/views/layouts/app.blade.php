@@ -59,9 +59,9 @@
             @endauth
         </main>
 
-       <footer class="bg-black h-[50v]">
-         
-       </footer>
+        <footer>
+            @include('elements.footer')
+        </footer>
 
     </div>
     </div>
