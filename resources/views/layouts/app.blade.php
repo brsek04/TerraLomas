@@ -23,7 +23,7 @@
     <link rel="stylesheet" href="{{ asset('web/css/style.css') }}">
     <link rel="stylesheet" href="{{ asset('web/css/components.css')}}">
     <link href="{{ mix('css/app.css') }}" rel="stylesheet"> 
-
+  
     @yield('css')
 
    
@@ -58,10 +58,20 @@
             </div>
             @endauth
         </main>
-
-       <footer class="bg-black h-[50v]">
-         
-       </footer>
+        @auth
+            @if(Auth::user()->hasRole('admin'))
+            <footer></footer>
+            @else
+            <footer>
+                @include('elements.footer')
+            </footer>
+            @endif
+        @else
+        <footer>
+            @include('elements.footer')
+        </footer>
+        @endauth
+           
 
     </div>
     </div>

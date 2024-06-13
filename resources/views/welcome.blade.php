@@ -11,6 +11,8 @@
                     <div class="card-body">
                         @foreach ($menus as $menu)
                             <div>{{ $menu->name }}</div>
+
+                            uwu
                             <!-- Aquí puedes mostrar más detalles del menú si lo deseas -->
                         @endforeach
                     </div>

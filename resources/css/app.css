@@ -2,4 +2,27 @@
 @tailwind components;
 @tailwind utilities;
 
-
+@keyframes fall-and-shrink {
+    0% {
+      transform: translateY(-20px) scale(1.5);
+      opacity: 0;
+    }
+    100% {
+      transform: translateY(0) scale(1);
+      opacity: 1;
+    }
+  }
+  
+  @media (max-width: 640px) {
+    .logo {
+      margin-left: 0;
+      justify-content: center;
+    }
+  
+    .logo-image {
+      animation: fall-and-shrink 0.5s ease-in-out;
+      height: 3rem; /* Adjust this value to make the image smaller */
+      width: auto;
+      position: relative;
+    }
+  }
