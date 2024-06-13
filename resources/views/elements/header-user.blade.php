@@ -1,10 +1,10 @@
 <nav class="fixed flex flex-wrap top-0 z-50 w-full  dark:bg-[#0F172A] dark:border-gray-700">
-    <div class="w-full px-1 lg:px-5 lg:py-2.5 lg:pl-3 bg-black flex justify-between items-center">
-        <div class="flex items-center">
-            <a href="#" class="logo ml-16 text-white dark:text-white transform ease-in-out duration-500 flex-none h-full flex items-center justify-center">
-                <strong>TerraLomas</strong>
-            </a>
-        </div>
+    <div class="flex items-center mt-10">
+        <a href="#" class="logo absolute  logo ml-16 transform ease-in-out duration-500 flex-none h-full flex items-center justify-center">
+            <img src="/images/logos/logoterra.png" alt="TerraLomas Logo" class="logo-image h-24 w-auto">
+        </a>
+    </div>
+    <div class="w-full px-1 lg:px-5 lg:py-2.5 lg:pl-3 bg-black flex justify-end items-center">
         <div class="text-right flex items-center px-10">
             <div class="flex flex-wrap px-2">
                 <a href="" class="text-white flex flex-wrap items-center pr-2">
@@ -33,13 +33,12 @@
                     </svg>
                 </a>
             </div>
-            
         </div>
-       
     </div>
     
     
-    <div class="flex flex-wrap items-center justify-between flex-grow md:pl-12 w-full bg-gray-900 bg-opacity-75 py-4 px-10">
+    <div class="flex flex-wrap items-end justify-between flex-grow md:pl-12 w-full bg-gray-900 bg-opacity-75 py-4 px-10">
+
         <div class="flex items-center space-x-6 capitalize">
             <a href="{{ route('visitante.index') }}" class="text-orange-300 hover:text-white transition">Sucursales</a>
             <a href="#" class="text-orange-300 hover:text-white transition">Nosotros</a>
