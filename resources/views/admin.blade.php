@@ -16,8 +16,8 @@
                 </div>
             </div>
         </div>
-        <div class="row mt-4 justify-content-center">
-            <div class="d-flex justify-content-center flex-wrap">
+        <div class="row mt-4 justify-content-center ">
+            <div class="d-flex justify-content-center flex-wrap flex">
                 @foreach ($userCountsByRole as $role => $count)
                     <div class="card mx-2 my-2" style="width: 12rem;">
                         <div class="card-body text-center">
@@ -28,7 +28,7 @@
                 @endforeach
             </div>
         </div>
-        <div class="row mt-4">
+        <div class="row mt-4 flex">
             <div class="col-md-6">
                 <div style="max-width: 200px;">
                     <canvas id="branchesChart"></canvas>
@@ -39,7 +39,8 @@
                     <!-- Eliminado el canvas de menusChart -->
                 </div>
             </div>
-            <div class="col-md-6">
+            <div class="col-md-6 ">
+
                 <div style="max-width: 200px;">
                     <canvas id="dishesChart"></canvas>
                 </div>
