@@ -3,10 +3,8 @@
 namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
-use App\Models\Menu; // Asegúrate de que este uso está en mayúsculas
+use App\Models\Menu;
 
-class MenusTableSeeder extends Seeder
-{
 class MenusTableSeeder extends Seeder
 {
     /**
@@ -33,5 +31,4 @@ class MenusTableSeeder extends Seeder
         ]);
 
     }
-}
 }
