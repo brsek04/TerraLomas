@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Support\Facades\DB;
 use App\Models\Branch;
 use App\Models\Menu;
 use App\Models\Dish;
@@ -50,6 +51,29 @@ class AdminController extends Controller
         $totalUsers = User::count();
         $totalDishes = Dish::count(); // Aquí deberías obtener el total de platos según tu lógica
 
+        $allDishes = DB::table('dishes_in_order')
+        ->select('dish_id', DB::raw('COUNT(*) as total'))
+        ->groupBy('dish_id')
+        ->get();
+
+$allDishesData = [];
+foreach ($allDishes as $dish) {
+$dishName = Dish::findOrFail($dish->dish_id)->name;
+$allDishesData[$dishName] = $dish->total;
+}
+
+// Obtener todas las bebidas vendidas
+$allBeverages = DB::table('beverages_in_order')
+        ->select('beverage_id', DB::raw('COUNT(*) as total'))
+        ->groupBy('beverage_id')
+        ->get();
+
+$allBeveragesData = [];
+foreach ($allBeverages as $beverage) {
+$beverageName = Beverage::findOrFail($beverage->beverage_id)->name;
+$allBeveragesData[$beverageName] = $beverage->total;
+}
+
         return view('admin', compact(
             'branches',
             'userCountsByRole',
@@ -60,7 +84,10 @@ class AdminController extends Controller
             'dishesByType',
             'beveragesByType',
             'totalUsers',
-            'totalDishes'
+            'totalDishes',
+            'allDishesData',
+            'allBeveragesData'
+            
         ));
     }
 
