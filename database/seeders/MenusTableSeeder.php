@@ -6,7 +6,7 @@ use Illuminate\Database\Seeder;
 use App\Models\Menu; // Asegúrate de que este uso está en mayúsculas
 
 class MenusTableSeeder extends Seeder
-
+{
 class MenusTableSeeder extends Seeder
 {
     /**
@@ -33,4 +33,5 @@ class MenusTableSeeder extends Seeder
         ]);
 
     }
+}
 }
