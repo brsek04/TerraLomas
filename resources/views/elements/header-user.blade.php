@@ -37,9 +37,9 @@
     </div>
     
     
-    <div class="flex flex-wrap items-end justify-between flex-grow md:pl-12 w-full bg-gray-900 bg-opacity-75 py-4 px-10">
+    <div class="flex flex-wrap items-center justify-end flex-grow md:pl-12 w-full bg-gray-900 bg-opacity-75 py-4 px-20">
 
-        <div class="flex items-center space-x-6 capitalize">
+        <div class="flex flex-wrap w-1/2 items-center justify-start space-x-6 capitalize">
             <a href="{{ route('visitante.index') }}" class="text-orange-300 hover:text-white transition">Sucursales</a>
             <a href="#" class="text-orange-300 hover:text-white transition">Nosotros</a>
             <a href="#" class="text-orange-300 hover:text-white transition">Destacados</a>
