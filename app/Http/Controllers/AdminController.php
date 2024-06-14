@@ -10,8 +10,10 @@ use App\Models\DishType;
 use App\Models\Beverage;
 use App\Models\BeverageType;
 use App\Models\User;
+use App\Models\Order;
 use Illuminate\Http\Request;
 use Spatie\Permission\Models\Role;
+use Carbon\Carbon;
 
 class AdminController extends Controller
 {
@@ -51,28 +53,87 @@ class AdminController extends Controller
         $totalUsers = User::count();
         $totalDishes = Dish::count(); // Aquí deberías obtener el total de platos según tu lógica
 
+        // Obtener todos los platos vendidos
         $allDishes = DB::table('dishes_in_order')
-        ->select('dish_id', DB::raw('COUNT(*) as total'))
-        ->groupBy('dish_id')
-        ->get();
+            ->select('dish_id', DB::raw('SUM(quantity) as total'))
+            ->groupBy('dish_id')
+            ->get();
 
-$allDishesData = [];
-foreach ($allDishes as $dish) {
-$dishName = Dish::findOrFail($dish->dish_id)->name;
-$allDishesData[$dishName] = $dish->total;
-}
+        $allDishesData = [];
+        foreach ($allDishes as $dish) {
+            $dishName = Dish::findOrFail($dish->dish_id)->name;
+            $allDishesData[$dishName] = $dish->total;
+        }
 
-// Obtener todas las bebidas vendidas
-$allBeverages = DB::table('beverages_in_order')
-        ->select('beverage_id', DB::raw('COUNT(*) as total'))
-        ->groupBy('beverage_id')
-        ->get();
+        // Obtener todas las bebidas vendidas
+        $allBeverages = DB::table('beverages_in_order')
+            ->select('beverage_id', DB::raw('SUM(quantity) as total'))
+            ->groupBy('beverage_id')
+            ->get();
 
-$allBeveragesData = [];
-foreach ($allBeverages as $beverage) {
-$beverageName = Beverage::findOrFail($beverage->beverage_id)->name;
-$allBeveragesData[$beverageName] = $beverage->total;
-}
+        $allBeveragesData = [];
+        foreach ($allBeverages as $beverage) {
+            $beverageName = Beverage::findOrFail($beverage->beverage_id)->name;
+            $allBeveragesData[$beverageName] = $beverage->total;
+        }
+
+        // Definir el rango de tiempo para la consulta
+        $dateRange = Carbon::now()->subWeek(); // Cambia esto a ->subDays(30) para el último mes, ->subDays(7) para la última semana, etc.
+
+        $totalOrdersLastMonth = Order::where('created_at', '>=', $dateRange)->count();
+
+        $topUsersLastMonth = Order::select('user_id', DB::raw('count(*) as order_count'))
+            ->where('created_at', '>=', $dateRange)
+            ->groupBy('user_id')
+            ->orderBy('order_count', 'desc')
+            ->take(5)
+            ->with('user')
+            ->get();
+
+        $topDishesLastMonth = DB::table('dishes_in_order')
+            ->join('orders', 'dishes_in_order.order_id', '=', 'orders.id')
+            ->select('dish_id', DB::raw('SUM(dishes_in_order.quantity) as total'))
+            ->where('orders.created_at', '>=', $dateRange)
+            ->groupBy('dish_id')
+            ->orderBy('total', 'desc')
+            ->take(3)
+            ->get()
+            ->map(function ($dish) {
+                $dish->name = Dish::find($dish->dish_id)->name;
+                return $dish;
+            });
+
+        $topBeveragesLastMonth = DB::table('beverages_in_order')
+            ->join('orders', 'beverages_in_order.order_id', '=', 'orders.id')
+            ->select('beverage_id', DB::raw('SUM(beverages_in_order.quantity) as total'))
+            ->where('orders.created_at', '>=', $dateRange)
+            ->groupBy('beverage_id')
+            ->orderBy('total', 'desc')
+            ->take(3)
+            ->get()
+            ->map(function ($beverage) {
+                $beverage->name = Beverage::find($beverage->beverage_id)->name;
+                return $beverage;
+            });
+
+        // Calcular ganancias de platos
+        $totalDishEarnings = DB::table('dishes_in_order')
+            ->join('orders', 'dishes_in_order.order_id', '=', 'orders.id')
+            ->join('dishes', 'dishes_in_order.dish_id', '=', 'dishes.id')
+            ->where('orders.created_at', '>=', $dateRange)
+            ->select(DB::raw('SUM(dishes_in_order.quantity * dishes.price) as total_earnings'))
+            ->value('total_earnings');
+
+        // Calcular ganancias de bebidas
+        $totalBeverageEarnings = DB::table('beverages_in_order')
+            ->join('orders', 'beverages_in_order.order_id', '=', 'orders.id')
+            ->join('beverages', 'beverages_in_order.beverage_id', '=', 'beverages.id')
+            ->where('orders.created_at', '>=', $dateRange)
+            ->select(DB::raw('SUM(beverages_in_order.quantity * beverages.price) as total_earnings'))
+            ->value('total_earnings');
+
+        // Calcular ganancias totales
+        $totalEarnings = $totalDishEarnings + $totalBeverageEarnings;
 
         return view('admin', compact(
             'branches',
@@ -86,8 +147,14 @@ $allBeveragesData[$beverageName] = $beverage->total;
             'totalUsers',
             'totalDishes',
             'allDishesData',
-            'allBeveragesData'
-            
+            'allBeveragesData',
+            'totalOrdersLastMonth',
+            'topUsersLastMonth',
+            'topDishesLastMonth',
+            'topBeveragesLastMonth',
+            'totalDishEarnings',
+            'totalBeverageEarnings',
+            'totalEarnings'
         ));
     }
 

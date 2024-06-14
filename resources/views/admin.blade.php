@@ -16,6 +16,50 @@
                 </div>
             </div>
         </div>
+
+        <!-- Sección para los datos del último mes -->
+        <div class="row mt-4">
+            <div class="col-lg-12">
+                <div class="card">
+                    <div class="card-body">
+                        <h4 class="card-title">Datos del Último Mes</h4>
+                        <p>Total de órdenes: {{ $totalOrdersLastMonth }}</p>
+
+                        <h5>Top 5 Usuarios</h5>
+                        <ul>
+                            @foreach ($topUsersLastMonth as $user)
+                                <li>{{ $user->user->name }} - {{ $user->order_count }} órdenes</li>
+                            @endforeach
+                        </ul>
+
+                        <h5>Top 3 Platos Más Vendidos</h5>
+                        <ul>
+                            @foreach ($topDishesLastMonth as $dish)
+                                <li>{{ $dish->name }} - {{ $dish->total }} unidades</li>
+                            @endforeach
+                        </ul>
+
+                        <h5>Top 3 Bebidas Más Vendidas</h5>
+                        <ul>
+                            @foreach ($topBeveragesLastMonth as $beverage)
+                                <li>{{ $beverage->name }} - {{ $beverage->total }} unidades</li>
+                            @endforeach
+                        </ul>
+                        <ul>
+                        Ganancias por Platos: ${{ number_format($totalDishEarnings, 2) }}
+                        </ul>
+                        <ul>
+                        Ganancias por Bebidas: ${{ number_format($totalBeverageEarnings, 2) }}
+                        </ul>
+                        <ul>
+                        Gnancias totales: ${{ number_format($totalEarnings, 2) }}
+                        </ul>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
         <div class="row mt-4 justify-content-center ">
             <div class="d-flex justify-content-center flex-wrap flex">
                 @foreach ($userCountsByRole as $role => $count)
@@ -65,6 +109,49 @@
         </div>
     
 </section>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels"></script>
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        console.log('Datos cargados correctamente');
+
+        var branchCount = {{ $branchCount }};
+        var dishCount = {{ $dishCount }};
+        var beverageCount = {{ $beverageCount }};
+        var totalUsers = {{ $totalUsers }};
+        var totalDishes = {{ $totalDishes }};
+
+        var dishesByType = {!! json_encode($dishesByType->pluck('dishes_count', 'name')) !!};
+        var beveragesByType = {!! json_encode($beveragesByType->pluck('beverages_count', 'name')) !!};
+        var allDishesData = {!! json_encode($allDishesData) !!};
+        var allBeveragesData = {!! json_encode($allBeveragesData) !!};
+
+        console.log('Dishes By Type:', dishesByType);
+        console.log('Beverages By Type:', beveragesByType);
+        console.log('All Dishes:', allDishesData);
+        console.log('All Beverages:', allBeveragesData);
+
+        // Gráfico de Branches
+        new Chart(document.getElementById('branchesChart').getContext('2d'), {
+            type: 'doughnut',
+            data: {
+                labels: ['Branches', 'Total Users'],
+                datasets: [{
+                    label: 'Branches vs Total Users',
+                    data: [branchCount, totalUsers],
+                    backgroundColor: ['#36a2eb', '#ff6384'],
+                }]
+            },
+            options: {
+                plugins: {
+                    tooltip: {
+                        callbacks: {
+                            label: function(tooltipItem) {
+                                var label = tooltipItem.label || '';
+
+                                if (label)
+
 
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels"></script>
