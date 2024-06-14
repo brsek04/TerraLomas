@@ -306,5 +306,47 @@ public function generateTCPDF(Request $request)
     // Enviar el PDF como respuesta para descarga
     return $pdf->Output($fileName, 'D');
 }
+
+
+public function orderHistory()
+{
+    // Obtener todas las órdenes y cargar las relaciones de usuario
+    $orders = Order::with('user')
+        ->orderBy('created_at', 'desc') // Ordenar por fecha de creación, si es necesario
+        ->get();
+
+    // Consultar los platos y bebidas para cada orden y calcular el precio total
+    $orderDetails = $orders->map(function ($order) {
+        $dishes = DB::table('dishes_in_order')
+            ->join('dishes', 'dishes_in_order.dish_id', '=', 'dishes.id')
+            ->where('dishes_in_order.order_id', $order->id)
+            ->get(['dishes.name', 'dishes.price', 'dishes_in_order.quantity']);
+
+        $beverages = DB::table('beverages_in_order')
+            ->join('beverages', 'beverages_in_order.beverage_id', '=', 'beverages.id')
+            ->where('beverages_in_order.order_id', $order->id)
+            ->get(['beverages.name', 'beverages.price', 'beverages_in_order.quantity']);
+
+        $totalPrice = 0;
+        foreach ($dishes as $dish) {
+            $totalPrice += $dish->quantity * $dish->price;
+        }
+        foreach ($beverages as $beverage) {
+            $totalPrice += $beverage->quantity * $beverage->price;
+        }
+
+        return (object) [
+            'id' => $order->id,
+            'description' => $dishes->merge($beverages),
+            'total_price' => $totalPrice,
+            'user' => $order->user->name,
+            'created_at' => $order->created_at->format('Y-m-d H:i:s'), // Formatear fecha como necesites
+        ];
+    });
+
+    return view('order_history', ['orders' => $orderDetails]);
+}
+
+
 }
 

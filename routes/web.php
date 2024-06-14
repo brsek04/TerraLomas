@@ -74,7 +74,7 @@ Route::group(['middleware' => ['auth']], function () {
     Route::get('/admin', [AdminController::class, 'index'])->name('admin.index');
     Route::get('report', [AdminController::class, 'report'])->name('admin.report');
     Route::get('generate-pdf', [AdminController::class, 'generateTCPDF'])->name('admin.generatePDF');
-
+    Route::get('order-history', [AdminController::class, 'orderHistory'])->name('order.history');
     Route::post('/roles', [RolController::class, 'store'])->name('roles.store');    
 });
 
