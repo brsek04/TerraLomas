@@ -73,6 +73,8 @@ Route::group(['middleware' => ['auth']], function () {
     Route::resource('abouts', AboutController::class);
     Route::get('/admin', [AdminController::class, 'index'])->name('admin.index');
     Route::get('report', [AdminController::class, 'report'])->name('admin.report');
+    Route::get('generate-pdf', [AdminController::class, 'generateTCPDF'])->name('admin.generatePDF');
+
     Route::post('/roles', [RolController::class, 'store'])->name('roles.store');    
 });
 

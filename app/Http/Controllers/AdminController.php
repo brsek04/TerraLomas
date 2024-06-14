@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use TCPDF;
+use Illuminate\Support\Facades\Response;
 use Illuminate\Support\Facades\DB;
 use App\Models\Branch;
 use App\Models\Menu;
@@ -171,31 +173,138 @@ class AdminController extends Controller
         return view('branchMenus', compact('branch', 'menus'));
     }
     public function report(Request $request)
-    {
-        // Obtener las fechas del formulario
-        $startDate = Carbon::parse($request->input('start_date'))->startOfDay();
-        $endDate = Carbon::parse($request->input('end_date'))->endOfDay();
+{
+    // Obtener las fechas del formulario
+    $startDate = Carbon::parse($request->input('start_date'))->startOfDay();
+    $endDate = Carbon::parse($request->input('end_date'))->endOfDay();
 
-        // Calcular ganancias de platos
-        $totalDishEarnings = DB::table('dishes_in_order')
-            ->join('orders', 'dishes_in_order.order_id', '=', 'orders.id')
-            ->join('dishes', 'dishes_in_order.dish_id', '=', 'dishes.id')
-            ->whereBetween('orders.created_at', [$startDate, $endDate])
-            ->select(DB::raw('SUM(dishes_in_order.quantity * dishes.price) as total_earnings'))
-            ->value('total_earnings');
+    // Calcular ganancias de platos
+    $totalDishEarnings = DB::table('dishes_in_order')
+        ->join('orders', 'dishes_in_order.order_id', '=', 'orders.id')
+        ->join('dishes', 'dishes_in_order.dish_id', '=', 'dishes.id')
+        ->whereBetween('orders.created_at', [$startDate, $endDate])
+        ->sum(DB::raw('dishes_in_order.quantity * dishes.price'));
 
-        // Calcular ganancias de bebidas
-        $totalBeverageEarnings = DB::table('beverages_in_order')
-            ->join('orders', 'beverages_in_order.order_id', '=', 'orders.id')
-            ->join('beverages', 'beverages_in_order.beverage_id', '=', 'beverages.id')
-            ->whereBetween('orders.created_at', [$startDate, $endDate])
-            ->select(DB::raw('SUM(beverages_in_order.quantity * beverages.price) as total_earnings'))
-            ->value('total_earnings');
+    // Calcular ganancias de bebidas
+    $totalBeverageEarnings = DB::table('beverages_in_order')
+        ->join('orders', 'beverages_in_order.order_id', '=', 'orders.id')
+        ->join('beverages', 'beverages_in_order.beverage_id', '=', 'beverages.id')
+        ->whereBetween('orders.created_at', [$startDate, $endDate])
+        ->sum(DB::raw('beverages_in_order.quantity * beverages.price'));
 
-        // Calcular ganancias totales
-        $totalEarnings = $totalDishEarnings + $totalBeverageEarnings;
+    // Obtener platos vendidos
+    $dishData = DB::table('dishes_in_order')
+        ->join('dishes', 'dishes_in_order.dish_id', '=', 'dishes.id')
+        ->join('orders', 'dishes_in_order.order_id', '=', 'orders.id')
+        ->select('dishes.id', 'dishes.name', DB::raw('SUM(dishes_in_order.quantity) as total_sold'))
+        ->whereBetween('orders.created_at', [$startDate, $endDate])
+        ->groupBy('dishes.id', 'dishes.name')
+        ->get();
 
-        return view('report', compact('totalDishEarnings', 'totalBeverageEarnings', 'totalEarnings', 'startDate', 'endDate'));
-    }
+    // Obtener bebidas vendidas
+    $beverageData = DB::table('beverages_in_order')
+        ->join('beverages', 'beverages_in_order.beverage_id', '=', 'beverages.id')
+        ->join('orders', 'beverages_in_order.order_id', '=', 'orders.id')
+        ->select('beverages.id', 'beverages.name', DB::raw('SUM(beverages_in_order.quantity) as total_sold'))
+        ->whereBetween('orders.created_at', [$startDate, $endDate])
+        ->groupBy('beverages.id', 'beverages.name')
+        ->get();
 
+    // Calcular ganancias totales
+    $totalEarnings = $totalDishEarnings + $totalBeverageEarnings;
+
+    // Obtener usuarios que se registraron en el rango de fechas
+    $newUsersCount = User::whereBetween('created_at', [$startDate, $endDate])->count();
+
+    // Obtener usuarios que compraron en el rango de fechas
+    $usersThatPurchased = User::whereHas('orders', function ($query) use ($startDate, $endDate) {
+        $query->whereBetween('created_at', [$startDate, $endDate]);
+    })->count();
+
+    // Retornar la vista con los datos
+    return view('report', compact('totalDishEarnings', 'totalBeverageEarnings', 'totalEarnings', 'startDate', 'endDate', 'newUsersCount', 'usersThatPurchased', 'dishData', 'beverageData'));
 }
+
+
+public function generateTCPDF(Request $request)
+{
+    // Obtener las fechas del formulario
+    $startDate = Carbon::parse($request->input('start_date'))->startOfDay();
+    $endDate = Carbon::parse($request->input('end_date'))->endOfDay();
+
+    // Calcular ganancias de platos
+    $totalDishEarnings = DB::table('dishes_in_order')
+        ->join('orders', 'dishes_in_order.order_id', '=', 'orders.id')
+        ->join('dishes', 'dishes_in_order.dish_id', '=', 'dishes.id')
+        ->whereBetween('orders.created_at', [$startDate, $endDate])
+        ->select(DB::raw('SUM(dishes_in_order.quantity * dishes.price) as total_earnings'))
+        ->value('total_earnings');
+
+    // Calcular ganancias de bebidas
+    $totalBeverageEarnings = DB::table('beverages_in_order')
+        ->join('orders', 'beverages_in_order.order_id', '=', 'orders.id')
+        ->join('beverages', 'beverages_in_order.beverage_id', '=', 'beverages.id')
+        ->whereBetween('orders.created_at', [$startDate, $endDate])
+        ->select(DB::raw('SUM(beverages_in_order.quantity * beverages.price) as total_earnings'))
+        ->value('total_earnings');
+
+    // Calcular ganancias totales
+    $totalEarnings = $totalDishEarnings + $totalBeverageEarnings;
+
+    // Obtener platos vendidos
+    $dishData = DB::table('dishes_in_order')
+        ->join('dishes', 'dishes_in_order.dish_id', '=', 'dishes.id')
+        ->join('orders', 'dishes_in_order.order_id', '=', 'orders.id')
+        ->select('dishes.id', 'dishes.name', DB::raw('SUM(dishes_in_order.quantity) as total_sold'))
+        ->whereBetween('orders.created_at', [$startDate, $endDate])
+        ->groupBy('dishes.id', 'dishes.name')
+        ->get();
+
+    // Obtener bebidas vendidas
+    $beverageData = DB::table('beverages_in_order')
+        ->join('beverages', 'beverages_in_order.beverage_id', '=', 'beverages.id')
+        ->join('orders', 'beverages_in_order.order_id', '=', 'orders.id')
+        ->select('beverages.id', 'beverages.name', DB::raw('SUM(beverages_in_order.quantity) as total_sold'))
+        ->whereBetween('orders.created_at', [$startDate, $endDate])
+        ->groupBy('beverages.id', 'beverages.name')
+        ->get();
+
+    // Obtener usuarios registrados en el rango de fechas
+    $newUsers = User::whereBetween('created_at', [$startDate, $endDate])->count();
+
+    // Obtener usuarios que compraron en el rango de fechas
+    $usersThatPurchased = User::whereHas('orders', function ($query) use ($startDate, $endDate) {
+        $query->whereBetween('created_at', [$startDate, $endDate]);
+    })->count();
+
+    // Obtener la cantidad total de órdenes en el rango de fechas
+    $totalOrders = Order::whereBetween('created_at', [$startDate, $endDate])->count();
+
+    // Crear una instancia de TCPDF
+    $pdf = new TCPDF();
+
+    // Establecer las propiedades del documento
+    $pdf->SetCreator('Your App Name');
+    $pdf->SetAuthor('Your Name');
+    $pdf->SetTitle('Informe de Ganancias');
+    $pdf->SetSubject('Informe de Ganancias');
+    $pdf->SetKeywords('Informe, Ganancias, TCPDF');
+
+    // Agregar una página
+    $pdf->AddPage();
+
+    // Construir el contenido HTML del PDF
+    // Utiliza la vista 'pdf.php' en lugar de 'pdf_report'
+    $html = view('pdf', compact('startDate', 'endDate', 'totalDishEarnings', 'totalBeverageEarnings', 'totalEarnings', 'dishData', 'beverageData', 'newUsers', 'usersThatPurchased', 'totalOrders'))->render();
+
+    // Escribir el contenido en el PDF
+    $pdf->writeHTML($html, true, false, true, false, '');
+
+    // Nombre del archivo PDF para descarga
+    $fileName = 'informe_ganancias_' . $startDate->format('Ymd') . '_' . $endDate->format('Ymd') . '.pdf';
+
+    // Enviar el PDF como respuesta para descarga
+    return $pdf->Output($fileName, 'D');
+}
+}
+
