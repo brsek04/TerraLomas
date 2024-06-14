@@ -72,6 +72,7 @@ Route::group(['middleware' => ['auth']], function () {
     Route::resource('categories', CategoryController::class);
     Route::resource('abouts', AboutController::class);
     Route::get('/admin', [AdminController::class, 'index'])->name('admin.index');
+    Route::get('report', [AdminController::class, 'report'])->name('admin.report');
     Route::post('/roles', [RolController::class, 'store'])->name('roles.store');    
 });
 

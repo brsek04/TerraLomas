@@ -170,4 +170,32 @@ class AdminController extends Controller
         $menus = $branch->menus()->get();
         return view('branchMenus', compact('branch', 'menus'));
     }
+    public function report(Request $request)
+    {
+        // Obtener las fechas del formulario
+        $startDate = Carbon::parse($request->input('start_date'))->startOfDay();
+        $endDate = Carbon::parse($request->input('end_date'))->endOfDay();
+
+        // Calcular ganancias de platos
+        $totalDishEarnings = DB::table('dishes_in_order')
+            ->join('orders', 'dishes_in_order.order_id', '=', 'orders.id')
+            ->join('dishes', 'dishes_in_order.dish_id', '=', 'dishes.id')
+            ->whereBetween('orders.created_at', [$startDate, $endDate])
+            ->select(DB::raw('SUM(dishes_in_order.quantity * dishes.price) as total_earnings'))
+            ->value('total_earnings');
+
+        // Calcular ganancias de bebidas
+        $totalBeverageEarnings = DB::table('beverages_in_order')
+            ->join('orders', 'beverages_in_order.order_id', '=', 'orders.id')
+            ->join('beverages', 'beverages_in_order.beverage_id', '=', 'beverages.id')
+            ->whereBetween('orders.created_at', [$startDate, $endDate])
+            ->select(DB::raw('SUM(beverages_in_order.quantity * beverages.price) as total_earnings'))
+            ->value('total_earnings');
+
+        // Calcular ganancias totales
+        $totalEarnings = $totalDishEarnings + $totalBeverageEarnings;
+
+        return view('report', compact('totalDishEarnings', 'totalBeverageEarnings', 'totalEarnings', 'startDate', 'endDate'));
+    }
+
 }
