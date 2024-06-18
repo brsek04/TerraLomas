@@ -20,6 +20,8 @@ use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\AboutController;
 
+use App\Http\Controllers\FuncionarioController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -76,6 +78,15 @@ Route::group(['middleware' => ['auth']], function () {
     Route::get('generate-pdf', [AdminController::class, 'generateTCPDF'])->name('admin.generatePDF');
     Route::get('order-history', [AdminController::class, 'orderHistory'])->name('order.history');
     Route::post('/roles', [RolController::class, 'store'])->name('roles.store');    
+    
+
+    Route::get('/funcionarios', [FuncionarioController::class, 'index'])->name('funcionarios.index');
+    Route::get('/funcionarios/{id}/edit', [FuncionarioController::class, 'edit'])->name('funcionarios.edit');
+    Route::post('/funcionarios/{id}/document', [FuncionarioController::class, 'storeDocument'])->name('funcionarios.storeDocument');
+
+
+
+
 });
 
 // Cart Routes
