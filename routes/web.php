@@ -22,6 +22,10 @@ use App\Http\Controllers\AboutController;
 
 use App\Http\Controllers\FuncionarioController;
 
+use App\Http\Controllers\ReservaController;
+
+use App\Http\Controllers\MesaController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -55,6 +59,16 @@ Route::get('/posts/{post}', [PostController::class, 'show'])->name('posts.show')
 Route::get('/posts/{post}/edit', [PostController::class, 'edit'])->name('posts.edit');
 Route::put('/posts/{post}', [PostController::class, 'update'])->name('posts.update');
 Route::delete('/posts/{post}', [PostController::class, 'destroy'])->name('posts.destroy');
+
+
+Route::resource('reservas', ReservaController::class);
+Route::get('/branch/{branch}/reservas', [ReservaController::class, 'reservasPorBranch'])->name('branch.reservas');
+Route::get('/branch/{branch_id}/reservas/create', [ReservaController::class, 'create'])->name('reservas.create');
+Route::post('/reservas', [ReservaController::class, 'store'])->name('reservas.store');
+
+
+
+Route::resource('mesas', MesaController::class);
 
 // Authentication Routes
 Auth::routes();
