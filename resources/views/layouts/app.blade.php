@@ -10,20 +10,18 @@
     <!-- Fonts -->
     <link rel="preload" href="//fonts.googleapis.com/css?family=Lato&display=swap" as="style">
 
-    <!-- Ionicons -->
+    <!-- FullCalendar CSS -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/5.10.1/main.min.css" rel="stylesheet">
+    
+    <!-- Otros CSS -->
     <link href="{{ asset('assets/css/@fortawesome/fontawesome-free/css/all.css') }}" rel="stylesheet" type="text/css">
     <link rel="stylesheet" href="{{ asset('assets/css/iziToast.min.css') }}">
     <link href="{{ asset('assets/css/sweetalert.css') }}" rel="stylesheet" type="text/css"/>
     <link href="{{ asset('assets/css/select2.min.css') }}" rel="stylesheet" type="text/css"/>
-
-    <script src="https://cdn.jsdelivr.net/npm/alpinejs@3.4.2/dist/cdn.min.js" defer></script>
-    @yield('page_css')
-    
-    <!-- Template CSS -->
     <link rel="stylesheet" href="{{ asset('web/css/style.css') }}">
     <link rel="stylesheet" href="{{ asset('web/css/components.css') }}">
     <link href="{{ mix('css/app.css') }}" rel="stylesheet">
-  
+
     @yield('css')
 
     <title>@yield('title') | {{ config('app.name') }}</title>
@@ -75,7 +73,7 @@
         </div>
     </div>
 
-    <!-- Incluir jQuery y DataTables -->
+    <!-- jQuery y otros JS -->
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://cdn.datatables.net/1.11.4/js/jquery.dataTables.min.js"></script>
     <script src="https://cdn.datatables.net/select/1.3.4/js/dataTables.select.min.js"></script>
@@ -83,10 +81,13 @@
     <script src="https://cdn.datatables.net/buttons/2.3.3/js/buttons.html5.min.js"></script>
     <script src="https://cdn.datatables.net/buttons/2.3.3/js/buttons.print.min.js"></script>
 
-    <!-- Incluir tu script personalizado para DataTables -->
-    @yield('scripts')
-
+    <!-- FullCalendar JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/5.10.1/main.min.js"></script>
+    
+    <!-- Otros JS -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.3.0/flowbite.min.js"></script>
     <script src="{{ mix('js/app.js') }}"></script>
+    
+    @yield('scripts')
 </body>
 </html>

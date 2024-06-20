@@ -4,8 +4,10 @@
 namespace App\Http\Controllers;
 
 use App\Models\Mesa;
+use App\Models\Horario;
 use Illuminate\Http\Request;
 use App\Models\Branch; 
+use Carbon\Carbon; 
 
 class MesaController extends Controller
 {
@@ -22,23 +24,31 @@ class MesaController extends Controller
     }
 
     public function store(Request $request)
-    {
-        // Valida y guarda la nueva mesa
-        $request->validate([
-            'numero' => 'required|string|unique:mesas',
-            'capacidad' => 'required|integer',
-            'branch_id' => 'required|exists:branches,id',
-        ]);
-    
-        // Crear una nueva instancia de Mesa con los datos validados y branch_id
-        $mesa = new Mesa();
-        $mesa->numero = $request->input('numero');
-        $mesa->capacidad = $request->input('capacidad');
-        $mesa->branch_id = $request->input('branch_id');
-        $mesa->save();
-    
-        return redirect()->route('mesas.index')->with('success', 'Mesa creada correctamente.');
+{
+    $request->validate([
+        'numero' => 'required|string|unique:mesas',
+        'capacidad' => 'required|integer',
+        'branch_id' => 'required|exists:branches,id',
+    ]);
+
+    $mesa = Mesa::create($request->all());
+
+    // Generar horarios para los próximos 7 días
+    $horas = ['13:00:00', '15:00:00', '17:00:00', '19:00:00'];
+    for ($i = 0; $i < 7; $i++) {
+        $fecha = Carbon::now()->addDays($i)->toDateString();
+        foreach ($horas as $hora) {
+            Horario::create([
+                'mesa_id' => $mesa->id,
+                'fecha' => $fecha,
+                'hora' => $hora,
+            ]);
+        }
     }
+
+    return redirect()->route('mesas.index')->with('success', 'Mesa creada correctamente.');
+}
+
 
     public function edit(Mesa $mesa)
     {

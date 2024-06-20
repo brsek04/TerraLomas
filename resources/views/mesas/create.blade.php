@@ -17,7 +17,7 @@
                 <label for="branch_id">Sucursal</label>
                 <select class="form-control" id="branch_id" name="branch_id" required>
                     @foreach ($branches as $branch)
-                        <option value="{{ $branch->id }}">{{ $branch->id }}</option>
+                        <option value="{{ $branch->id }}">{{ $branch->name }}</option>
                     @endforeach
                 </select>
             </div>
