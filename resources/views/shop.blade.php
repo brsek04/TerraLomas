@@ -61,6 +61,16 @@
                                 Limpiar filtros
                             </button>
                         </div>
+
+                        <div class="items-start">
+                            <a href="{{ route('cart.index') }}" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M3 3h2l.94 4.29M7 13h11l3.59-7.21A1 1 0 0 0 20.72 4H5.01M7 13l-1.35 5.44A1 1 0 0 0 6.66 20h10.68a1 1 0 0 0 .99-.82L20 13M7 13h10m-5 5v1m0 4m-4-2h4"/>
+                                </svg>
+                                <span class="ml-2">Ver Carrito</span>
+                            </a>
+                        </div>
+
                     </div>
         </div>
     </div>
