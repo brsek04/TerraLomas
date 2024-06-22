@@ -27,4 +27,11 @@ class OrderController extends Controller
         // Redirigir a una página de éxito o mostrar un mensaje de éxito
         return redirect()->route('checkout.success')->with('success_msg', 'Pedido realizado con éxito.');
     }
+
+    public function show($orderId)
+    {
+        $order = Order::with(['dishes', 'beverages'])->findOrFail($orderId);
+
+        return view('order.show', compact('order'));
+    }
 }

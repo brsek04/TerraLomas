@@ -19,6 +19,7 @@ use App\Http\Controllers\AdminController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\AboutController;
+use App\Http\Controllers\OrderController;
 
 use App\Http\Controllers\FuncionarioController;
 
@@ -118,5 +119,6 @@ Route::post('/cart/checkout', [CartController::class, 'checkout'])->name('cart.c
 Route::get('/shop/{menuId}', [CartController::class, 'shop'])->name('shop.index');
 Route::get('/shop/{menuId}/filter', [CartController::class, 'filter'])->name('shop.filter');
 
-Route::get('/qr/{qrCodePath}', 'CartController@qrCode')->name('qr');
 
+
+Route::get('/order/{order}', [OrderController::class, 'show'])->name('order.show');

@@ -98,14 +98,14 @@ class CartController extends Controller
     public function checkout()
     {
         $userId = auth()->id(); // Supongamos que tienes un sistema de autenticación y necesitas el ID del usuario
-
+    
         $order = Order::create([
             'user_id' => $userId,
             // Otros campos de la orden, si los hay
         ]);
-
+    
         $cartCollection = \Cart::getContent();
-
+    
         foreach ($cartCollection as $item) {
             if ($item->attributes->type == 'dish') {
                 // Obtener el ID del plato eliminando el prefijo 'dish_'
@@ -129,41 +129,24 @@ class CartController extends Controller
                 ]);
             }
         }
-
+    
         \Cart::clear();
-
-        // Generar el código QR
-        $qrCode = new QrCode($order->id);
+    
+        // Generar el código QR con una URL que redirija a la vista de detalles de la orden
+        $qrCode = new QrCode(route('order.show', ['order' => $order->id]));
         $qrCode->setSize(300);
-
+    
         // Crear un objeto PngWriter
         $qrCodeWriter = new PngWriter();
-
+    
         // Generar el contenido del código QR como una cadena
         $qrCodeData = $qrCodeWriter->write($qrCode)->getString();
-
+    
         // Devolver el código QR como una respuesta HTTP con el contenido de la cadena
         return Response::make($qrCodeData, 200, [
             'Content-Type' => 'image/png',
             'Content-Disposition' => 'inline; filename="qrcode.png"',
         ]);
     }
-
-    public function qrCode($qrCodePath)
-    {
-        $filePath = Storage::path($qrCodePath);
-
-        if (!Storage::exists($qrCodePath)) {
-            abort(404);
-        }
-
-        $fileContents = file_get_contents($filePath);
-
-        return Response::make($fileContents, 200, [
-            'Content-Type' => 'image/png',
-            'Content-Disposition' => 'inline; filename="qrcode.png"',
-        ]);
-    }
-
-
+    
 }

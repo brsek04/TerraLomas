@@ -21,12 +21,11 @@ class Order extends Model
 
     public function dishes()
     {
-        return $this->hasMany(DishInOrder::class);
+        return $this->belongsToMany(Dish::class, 'dishes_in_order')->withPivot('quantity');
     }
 
     public function beverages()
     {
-        return $this->hasMany(BeverageInOrder::class);
+        return $this->belongsToMany(Beverage::class, 'beverages_in_order')->withPivot('quantity');
     }
-    
 }
