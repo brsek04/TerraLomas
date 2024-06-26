@@ -5,7 +5,7 @@
            <div>
         
            
-           <button class="switch" id="switch">
+   <button class="switch" id="switch">
         <span id="sun-icon" class="hidden"><i class="fas fa-sun icon"></i></span>
         <span id="moon-icon" class="hidden"><i class="fas fa-moon icon"></i></span>
     </button>
