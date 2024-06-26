@@ -146,3 +146,34 @@
       .about_content .social li a:hover {
         color: #fff;
         background-color: #E54E1B; }
+
+
+
+        .customer_active .slick-dots {
+          margin-top: 30px;
+          text-align: center;
+          width: 100%; }
+          .customer_active .slick-dots li {
+            display: inline-block;
+            margin: 0 5px; }
+            .customer_active .slick-dots li button {
+              width: 13px;
+              height: 13px;
+              background: none;
+              border: 0;
+              border-radius: 50%;
+              background-color: #7A7A7A;
+              font-size: 0;
+              -webkit-transition: all 0.3s ease-out 0s;
+              -moz-transition: all 0.3s ease-out 0s;
+              -ms-transition: all 0.3s ease-out 0s;
+              -o-transition: all 0.3s ease-out 0s;
+              transition: all 0.3s ease-out 0s;
+              -webkit-transform: translateX(-50%);
+              -moz-transform: translateX(-50%);
+              -ms-transform: translateX(-50%);
+              -o-transform: translateX(-50%);
+              transform: translateX(-50%); }
+            .customer_active .slick-dots li.slick-active button {
+              background-color: #E54E1B;
+              border-color: #E54E1B; }
