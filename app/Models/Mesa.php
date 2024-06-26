@@ -9,7 +9,7 @@ class Mesa extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['numero', 'capacidad'];
+    protected $fillable = ['numero', 'capacidad', 'branch_id'];
 
     public function reservas()
     {
