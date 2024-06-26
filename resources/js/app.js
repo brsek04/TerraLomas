@@ -1,5 +1,6 @@
 import 'flowbite';
 import  './funciones';
+import './validations';
 
 
 

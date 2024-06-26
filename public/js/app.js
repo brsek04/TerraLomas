@@ -6355,12 +6355,15 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var flowbite__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! flowbite */ "./node_modules/flowbite/lib/esm/index.js");
 /* harmony import */ var _funciones__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./funciones */ "./resources/js/funciones.js");
 /* harmony import */ var _funciones__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_funciones__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var alpinejs__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! alpinejs */ "./node_modules/alpinejs/dist/module.esm.js");
+/* harmony import */ var _validations__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./validations */ "./resources/js/validations.js");
+/* harmony import */ var _validations__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_validations__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var alpinejs__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! alpinejs */ "./node_modules/alpinejs/dist/module.esm.js");
 
 
 
-window.Alpine = alpinejs__WEBPACK_IMPORTED_MODULE_2__["default"];
-alpinejs__WEBPACK_IMPORTED_MODULE_2__["default"].start();
+
+window.Alpine = alpinejs__WEBPACK_IMPORTED_MODULE_3__["default"];
+alpinejs__WEBPACK_IMPORTED_MODULE_3__["default"].start();
 
 /***/ }),
 
@@ -6466,6 +6469,21 @@ document.querySelectorAll('[data-modal-hide]').forEach(function (button) {
     modal.classList.add('hidden');
     modal.classList.remove('flex');
     modal.setAttribute('aria-hidden', 'true');
+  });
+});
+
+/***/ }),
+
+/***/ "./resources/js/validations.js":
+/*!*************************************!*\
+  !*** ./resources/js/validations.js ***!
+  \*************************************/
+/***/ (() => {
+
+jQuery(function ($) {
+  $('.menu-item').click(function () {
+    $('.menu-item').removeClass('active');
+    $(this).addClass('active');
   });
 });
 

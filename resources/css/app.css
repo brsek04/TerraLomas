@@ -26,3 +26,123 @@
       position: relative;
     }
   }
+
+  .menu-item {
+    position: relative;
+}
+
+.menu-item::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 2px;
+    bottom: -5px;
+    left: 50%;
+    background-color: #FF7F11; /* Naranja */
+    transition: all 0.3s ease-in-out;
+    transform: translateX(-50%);
+}
+
+.menu-item:hover::after,
+.menu-item:focus::after,
+.menu-item.active::after {
+    width: 100%;
+    left: 0;
+    transform: translateX(0);
+}
+
+/* styles.css */
+
+/* Para el navbar-toggler si deseas personalizar las animaciones o el estilo */
+.navbar-toggler .toggler-icon {
+  background-color: #fff;
+  display: block;
+  width: 30px;
+  height: 3px;
+  margin: 5px auto;
+  -webkit-transition: all 0.3s ease-in-out;
+  transition: all 0.3s ease-in-out;
+}
+
+.navbar-toggler:hover .toggler-icon {
+  background-color: #f97316; /* Tailwind color for orange-600 */
+}
+
+/* Para animaciones adicionales en el slider */
+@keyframes fadeInUp {
+  0% {
+      opacity: 0;
+      transform: translateY(20px);
+  }
+  100% {
+      opacity: 1;
+      transform: translateY(0);
+  }
+}
+
+
+/* Personalizaciones adicionales */
+.slider_content .slider_title {
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.6);
+}
+
+.main-btn {
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+.main-btn:hover {
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+}
+
+/* Media queries si necesitas hacer ajustes adicionales para diferentes tamaños de pantalla */
+@media (max-width: 768px) {
+  .slider_content .slider_title {
+      font-size: 2rem;
+  }
+
+  .slider_content p {
+      font-size: 1rem;
+  }
+}
+
+
+.about_image img {
+  border-radius: 5px;
+  width: 100%; }
+
+.about_content .about_title {
+  font-size: 40px;
+  font-weight: 700; }
+  @media (max-width: 767px) {
+    .about_content .about_title {
+      font-size: 24px; } }
+  @media only screen and (min-width: 576px) and (max-width: 767px) {
+    .about_content .about_title {
+      font-size: 30px; } }
+
+.about_content p {
+  margin-top: 25px; }
+
+.about_content .social {
+  padding-top: 30px; }
+  .about_content .social li {
+    display: inline-block;
+    margin-top: 10px; }
+    .about_content .social li + li {
+      margin-left: 15px; }
+    .about_content .social li a {
+      width: 35px;
+      height: 35px;
+      line-height: 35px;
+      text-align: center;
+      background-color: #7A7A7A;
+      color: #fff;
+      border-radius: 5px;
+      -webkit-transition: all 0.3s ease-out 0s;
+      -moz-transition: all 0.3s ease-out 0s;
+      -ms-transition: all 0.3s ease-out 0s;
+      -o-transition: all 0.3s ease-out 0s;
+      transition: all 0.3s ease-out 0s; }
+      .about_content .social li a:hover {
+        color: #fff;
+        background-color: #E54E1B; }
