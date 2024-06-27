@@ -5,25 +5,28 @@
 @section('content')
 
 <div class="w-full min-h-screen flex flex-col bg-gray-900">
-    <div class="relative bg-cover flex items-center h-[750px] md:h-[950px] lg:h-[700px] sm:h-[650px]" style="background-image: url('images/logos/bannerbg.jpg');">
-        <div class="absolute inset-0 bg-black bg-opacity-45"></div>
-        <div class="relative container mx-auto px-4 text-white">
-            <div class="w-full md:w-9/12">
-                <h2 class="slider_title text-white text-4xl md:text-5xl lg:text-6xl font-bold leading-tight mb-4 wow fadeInUp">Nuestras sucursales</h2>
-                <p class="text-white text-lg font-medium leading-7 mb-6 wow fadeInUp">Nos enorgullece presentarte nuestras sucursales, cada una diseñada para brindarte la mejor experiencia posible.
-                    Descubre nuestras instalaciones y servicios únicos en cada ubicación, 
-                    donde te garantizamos encontrarás la calidad y atención que nos caracteriza y mereces.</p>
-                    <div class="flex flex-wrap sm:flex-row sm:space-x-6 sm:space-y-0 py-10 ">
-                        @foreach ($branches as $branch)
-                        <div class=" overflow-hidden rounded-lg p-2">
-                            <a href="{{ route('branch.menus', $branch->id) }}" rel="nofollow" class="main-btn inline-block bg-orange-600 text-white font-bold py-3 px-6 rounded-lg hover:bg-orange-700 transition-all duration-300">{{ $branch->name }}</a>
+    <section id="sucursal" class="pt-28">
+        <div  class="relative bg-cover flex items-center h-[750px] md:h-[950px] lg:h-[700px] sm:h-[650px]" style="background-image: url('images/logos/bannerbg.jpg');">
+            <div class="absolute inset-0 bg-black bg-opacity-45"></div>
+            <div class="relative container mx-auto px-4 text-white">
+                <div class="w-full md:w-9/12">
+                    <h2 class="slider_title text-white text-4xl md:text-5xl lg:text-6xl font-bold leading-tight mb-4 wow fadeInUp">Nuestras sucursales</h2>
+                    <p class="text-white text-lg font-medium leading-7 mb-6 wow fadeInUp">Nos enorgullece presentarte nuestras sucursales, cada una diseñada para brindarte la mejor experiencia posible.
+                        Descubre nuestras instalaciones y servicios únicos en cada ubicación, 
+                        donde te garantizamos encontrarás la calidad y atención que nos caracteriza y mereces.</p>
+                        <div class="flex flex-wrap sm:flex-row sm:space-x-6 sm:space-y-0 py-10 ">
+                            @foreach ($branches as $branch)
+                            <div class=" overflow-hidden rounded-lg p-2">
+                                <a href="{{ route('branch.menus', $branch->id) }}" rel="nofollow" class="main-btn inline-block bg-orange-600 text-white font-bold py-3 px-6 rounded-lg hover:bg-orange-700 transition-all duration-300">{{ $branch->name }}</a>
+                            </div>
+                            @endforeach
                         </div>
-                        @endforeach
-                    </div>
-                   
+                       
+                </div>
             </div>
         </div>
-    </div>
+    </section>
+
     <section id="coffee" class="pt-28">
         <div class="container mx-auto">
             <div class="flex justify-center">
@@ -129,12 +132,12 @@
     </section>
 <!--====== ABOUT END ======-->
 <!--====== CONVENIO PART START ======-->
-<section id="customer" class="customer_area py-10">
+<section id="convenios" class="convenios_area py-20">
     <div class="container mx-auto ">
         <div class="flex justify-center">
-            <div class="w-full lg:w-1/2">
+            <div class="w-full ">
                 <div class="text-center pb-8">
-                    <h4 class="text-2xl font-semibold">Convenios</h4>
+                    <h4 class="text-2xl font-semibold text-white">Convenios</h4>
                     <div class="relative h-0.5 w-36 bg-[#E54E1B] rounded-full mx-auto mt-6">
                         <div class="absolute top-[-6px] left-1/2 w-4 h-4 bg-[#E54E1B] transform -translate-x-1/3 rotate-45">
                             <div class="absolute top-1.5 left-[-8px] w-full h-full bg-[#E54E1B]/30"></div>
@@ -145,17 +148,17 @@
             </div>
         </div>
         <div class="flex flex-wrap -mx-4 customer_active justify-center items-center">
-            <div class="w-full lg:w-1/2 px-4">
+            <div class="w-full px-4 ">
                 <div class="flex items-center mt-8">
                     <div class="w-64 lg:w-64 h-80 lg:h-80 overflow-hidden rounded-lg">
-                        <img src="assets/images/customer-1.jpg" alt="customer" class="w-full h-full object-cover object-center">
+                        <img src="/images/1718767546.png" alt="convenios" class="w-full h-full object-cover object-center">
                     </div>
                 </div>
             </div>
-            <div class="w-full px-4 lg:w-1/4">
+            <div class="w-full px-4 ">
                 <div class="flex items-center mt-8">
                     <div class="w-64 lg:w-64 h-80 lg:h-80 overflow-hidden rounded-lg">
-                        <img src="assets/images/customer-2.jpg" alt="customer" class="w-full h-full object-cover object-center">
+                        <img src="/images/1717898107.jpg" alt="convenios" class="w-full h-full object-cover object-center">
                     </div>
                 </div>
             </div>

@@ -27,7 +27,7 @@
     }
   }
 
-  .menu-item {
+.menu-item {
     position: relative;
 }
 
@@ -50,7 +50,6 @@
     left: 0;
     transform: translateX(0);
 }
-
 /* styles.css */
 
 /* Para el navbar-toggler si deseas personalizar las animaciones o el estilo */
