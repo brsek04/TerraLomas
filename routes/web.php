@@ -26,6 +26,7 @@ use App\Http\Controllers\ReservaController;
 
 use App\Http\Controllers\MesaController;
 
+use App\Http\Controllers\UserActionController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -70,6 +71,9 @@ Route::post('/reservas', [ReservaController::class, 'store'])->name('reservas.st
 
 Route::resource('mesas', MesaController::class);
 
+
+Route::get('/user-actions', [UserActionController::class, 'index'])->name('user.actions');
+
 // Authentication Routes
 Auth::routes();
 
@@ -98,7 +102,7 @@ Route::group(['middleware' => ['auth']], function () {
     Route::get('/funcionarios/{id}/edit', [FuncionarioController::class, 'edit'])->name('funcionarios.edit');
     Route::post('/funcionarios/{id}/document', [FuncionarioController::class, 'storeDocument'])->name('funcionarios.storeDocument');
 
-
+    
 
 
 });
