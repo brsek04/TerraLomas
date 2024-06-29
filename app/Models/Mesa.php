@@ -15,5 +15,15 @@ class Mesa extends Model
     {
         return $this->hasMany(Reserva::class);
     }
+
+    public function branch()
+    {
+        return $this->belongsTo(Branch::class);
+    }
+
+    public function horarios()
+    {
+        return $this->hasMany(Horario::class);
+    }
 }
 

@@ -57,12 +57,23 @@
 
 
             </div >
-           <div class = "text-white hover:text-blue-500 dark:hover:text-[#38BDF8]">
-               <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={3} stroke="currentColor" class="w-4 h-4">
-                   <path strokeLinecap="round" strokeLinejoin="round" d="M14.857 17.082a23.848 23.848 0 005.454-1.31A8.967 8.967 0 0118 9.75v-.7V9A6 6 0 006 9v.75a8.967 8.967 0 01-2.312 6.022c1.733.64 3.56 1.085 5.455 1.31m5.714 0a24.255 24.255 0 01-5.714 0m5.714 0a3 3 0 11-5.714 0" />
-               </svg>
-           </div>
+
+            <div class="text-white hover:text-blue-500 dark:hover:text-[#38BDF8]">
+    <a href="{{ route('user.actions') }}">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={3} stroke="currentColor" class="w-4 h-4">
+            <path strokeLinecap="round" strokeLinejoin="round" d="M14.857 17.082a23.848 23.848 0 005.454-1.31A8.967 8.967 0 0118 9.75v-.7V9A6 6 0 006 9v.75a8.967 8.967 0 01-2.312 6.022c1.733.64 3.56 1.085 5.455 1.31m5.714 0a24.255 24.255 0 01-5.714 0m5.714 0a3 3 0 11-5.714 0" />
+        </svg>
+    </a>
+</div>
+
+
+
+
+
+
        </div>
+
+
        <div  class = "flex items-center space-x-3 py-2 group bg-gradient-to-r dark:from-cyan-500 dark:to-blue-500 from-orange-700 via-red-500 to-orange-500  pl-10 pr-2  rounded-full text-white  ">
            <div class= "transform ease-in-out duration-300 mr-12 font-bold">
                TerraAdmin

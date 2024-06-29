@@ -57,4 +57,8 @@ class Dish extends Model
     {
         return $this->hasOne('App\Models\Category', 'id', 'category_id');
     }
+    public function orders()
+    {
+        return $this->belongsTo(DishInOrder::class, 'dish_id');
+    }
 }

@@ -50,5 +50,8 @@ class Beverage extends Model
         return $this->hasOne('App\Models\BeverageType', 'id', 'type_id');
     }
     
-
+    public function orders()
+    {
+        return $this->belongsTo(BeverageInOrder::class, 'beverage_id');
+    }
 }
