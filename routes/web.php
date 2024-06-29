@@ -74,6 +74,10 @@ Route::resource('mesas', MesaController::class);
 
 Route::get('/user-actions', [UserActionController::class, 'index'])->name('user.actions');
 
+Route::put('/reservas/{id}/rechazar', [ReservaController::class, 'rechazar'])->name('reservas.rechazar');
+
+
+
 // Authentication Routes
 Auth::routes();
 

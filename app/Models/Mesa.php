@@ -18,6 +18,12 @@ class Mesa extends Model
 
     public function branch()
     {
-        return $this->belongsTo(Branch::class, 'branch_id');
+        return $this->belongsTo(Branch::class);
+    }
+
+    public function horarios()
+    {
+        return $this->hasMany(Horario::class);
     }
 }
+

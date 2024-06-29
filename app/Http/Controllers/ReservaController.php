@@ -111,4 +111,26 @@ class ReservaController extends Controller
 
         return view('reservas.index', compact('reservas', 'branch'));
     }
+    public function rechazar($id)
+{
+    $reserva = Reserva::findOrFail($id);
+
+    // Obtener el horario asociado a la reserva
+    $horario = Horario::where('mesa_id', $reserva->mesa_id)
+                      ->where('fecha', Carbon::parse($reserva->fecha_hora)->format('Y-m-d'))
+                      ->firstOrFail();
+
+    // Cambiar el estado de reservado a 0 en Horario
+    $horario->reservado = false;
+    $horario->save();
+
+    // Eliminar la reserva
+    $reserva->delete();
+
+    // Redirigir a la página de user-actions
+    return redirect()->route('user-actions')->with('success', 'Reserva rechazada con éxito');
+}
+
+
+
 }
