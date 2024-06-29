@@ -16,3 +16,4 @@ class Horario extends Model
         return $this->belongsTo(Mesa::class);
     }
 }
+

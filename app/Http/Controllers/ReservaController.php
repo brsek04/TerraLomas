@@ -27,9 +27,21 @@ class ReservaController extends Controller
     {
         $mesas = Mesa::where('branch_id', $branch_id)->get();
         $horarios = Horario::whereIn('mesa_id', $mesas->pluck('id'))->where('reservado', false)->get();
+        $fechas = $horarios->pluck('fecha')->unique();
+        $capacidades = [];
+    
+        foreach ($fechas as $fecha) {
+            $capacidades[$fecha] = Mesa::where('branch_id', $branch_id)
+                                       ->whereHas('horarios', function ($query) use ($fecha) {
+                                           $query->where('fecha', $fecha)->where('reservado', false);
+                                       })
+                                       ->pluck('capacidad', 'id')
+                                       ->toArray();
+        }
+    
         $user = Auth::user();
-
-        return view('reservas.create', compact('mesas', 'branch_id', 'horarios', 'user'));
+    
+        return view('reservas.create', compact('mesas', 'branch_id', 'horarios', 'fechas', 'capacidades', 'user'));
     }
 
     public function store(Request $request)
