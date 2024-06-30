@@ -26,7 +26,10 @@ class ReservaController extends Controller
     public function create($branch_id)
 {
     $mesas = Mesa::where('branch_id', $branch_id)->get();
-    $horarios = Horario::whereIn('mesa_id', $mesas->pluck('id'))->where('reservado', false)->get();
+    $horarios = Horario::whereIn('mesa_id', $mesas->pluck('id'))
+                        ->where('reservado', false)
+                        ->where('fecha', '>=', Carbon::today()->format('Y-m-d'))
+                        ->get();
     $fechas = $horarios->pluck('fecha')->unique();
     $capacidades = [];
 
@@ -43,6 +46,7 @@ class ReservaController extends Controller
 
     return view('reservas.create', compact('mesas', 'branch_id', 'horarios', 'fechas', 'capacidades', 'user'));
 }
+
 
 
 
@@ -69,7 +73,7 @@ class ReservaController extends Controller
             'num_personas' => $request->num_personas,
         ]);
 
-        return redirect()->route('reservas.index')->with('success', 'Reserva creada con éxito');
+        return redirect()->back()->with('success', 'Reserva creada con éxito');
     }
 
     public function edit($id)

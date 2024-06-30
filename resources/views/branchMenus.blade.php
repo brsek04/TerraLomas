@@ -23,9 +23,10 @@
                 @endforeach
 
                 <!-- Botón de Reservas -->
-                <div class="shadow-[5px_5px_rgba(255,_165,_0,_0.4),_10px_10px_rgba(255,_165,_0,_0.3),_15px_15px_rgba(0,_98,_90,_0.2),_20px_20px_rgba(0,_98,_90,_0.1)] w-full max-w-sm max-h-sm h-full bg-no-repeat bg-cover overflow-hidden rounded-lg p-2 bg-blue-500 duration-300 hover:scale-105 hover:shadow-xl">
-                    <a href="{{ route('branch.reservas', $branch->id) }}" class="text-white">Reservas de {{ $branch->name }}</a>
-                </div>
+<div class="shadow-[5px_5px_rgba(255,_165,_0,_0.4),_10px_10px_rgba(255,_165,_0,_0.3),_15px_15px_rgba(0,_98,_90,_0.2),_20px_20px_rgba(0,_98,_90,_0.1)] w-full max-w-sm max-h-sm h-full bg-no-repeat bg-cover overflow-hidden rounded-lg p-2 bg-blue-500 duration-300 hover:scale-105 hover:shadow-xl">
+    <a href="{{ route('reservas.create', $branch->id) }}" class="text-white">Reservas de {{ $branch->name }}</a>
+</div>
+
             </div>
         </div>
     </div>

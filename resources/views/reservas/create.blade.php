@@ -2,6 +2,13 @@
 
 @section('content')
 <div class="container">
+
+@if (session('success'))
+        <div class="alert alert-success">
+            {{ session('success') }}
+        </div>
+    @endif
+
     <h2>Crear Nueva Reserva para Sucursal {{ $branch_id }}</h2>
     <form id="reservaForm" action="{{ route('reservas.store') }}" method="POST">
         @csrf
@@ -56,8 +63,8 @@
         </div>
 
         <div class="form-group">
-    <label for="num_personas">Número de Personas</label>
-    <input type="text" class="form-control" id="num_personas" name="num_personas" required>
+    <label for="num_personas"></label>
+    <input type="hidden" class="form-control" id="num_personas" name="num_personas" required>
 </div>
 
         
@@ -190,6 +197,9 @@ document.addEventListener('DOMContentLoaded', function() {
 
         if (selectedHorario) {
             horarioIdInput.value = selectedHorario.id;
+
+            // Mostrar alerta y permitir el envío del formulario
+            alert('Reserva agregada. Puede ver su correo para más detalles.');
         } else {
             event.preventDefault();
             alert('Por favor, seleccione una combinación válida de fecha, hora y mesa.');
@@ -197,9 +207,5 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 });
 </script>
-
-
-
-
 
 @endsection

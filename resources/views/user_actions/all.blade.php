@@ -2,7 +2,7 @@
 
 @section('content')
 <div class="container">
-    <h1>Listado de tus Reservas</h1>
+    <h1>Listado de Todas las Reservas</h1>
 
     @if (session('success'))
         <div class="alert alert-success">
@@ -33,14 +33,14 @@
                 <td>{{ $reserva->cliente_email }}</td>
                 <td>{{ $reserva->cliente_telefono }}</td>
                 <td>{{ $reserva->mesa->capacidad }}</td>
-                <td>{{ $reserva->mesa->numero }}</td> <!-- Asegúrate de tener el campo 'numero' en tu modelo 'Mesa' -->
+                <td>{{ $reserva->mesa->numero }}</td>
                 <td>{{ $reserva->num_personas }}</td>
                 <td>
-                    @if (strtotime($reserva->fecha_hora) >= strtotime(date('Y-m-d H:i:s')))
+                    @if (strtotime($reserva->fecha_hora) >= strtotime(now()))
                     <form action="{{ route('reservas.rechazar', $reserva->id) }}" method="POST">
                         @csrf
                         @method('PUT')
-                        <button type="submit" class="btn btn-danger">Rechazar</button>
+                        <button type="submit" class="btn btn-danger">Eliminar</button>
                     </form>
                     @endif
                 </td>
