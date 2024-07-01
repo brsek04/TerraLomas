@@ -1,13 +1,30 @@
-@extends('layouts.app')
+@extends('layouts.app-user')
 @section('title')
     Carrito
 @endsection
 @section('content')
 
-<div class="bg-gray-800 antialiased dark:bg-gray-900 py-10 flex flex-col items-center">
-    <div class="pt-20">
-        <h4 class="text-white font-serif font-bold text-2xl dark:text-white mb-4">Estás comprando en {{ $menu->name }}</h4>
-    </div>
+<div class="w-full min-h-screen flex flex-col bg-gray-900">
+    <section id="menu-cart" class="pt-28">
+        <div class="relative bg-cover flex items-center h-[750px] md:h-[950px] lg:h-[600px] sm:h-[650px]" style="background-image: url('{{ asset('images/logos/appsbg.jpg') }}');">
+            <div class="absolute inset-0 bg-black bg-opacity-45"></div>
+            <div class="relative container mx-auto px-4 text-white">
+                <div class="w-full md:w-9/12">
+                    <h2 class="slider_title text-white text-4xl md:text-5xl lg:text-6xl font-bold leading-tight mb-4 wow fadeInUp">Estás comprando en {{ $menu->name }}</h2>
+                    <div class="flex flex-wrap sm:flex-row sm:space-x-6 sm:space-y-0 py-10">
+                       
+                        <div class="overflow-hidden rounded-lg p-2">
+                            <h4 class="text-white font-serif font-bold text-2xl dark:text-white mb-4"></h4>
+                        </div>
+                       
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+
 </div>
 <div class="w-full max-h-max">
     <div class="w-full px-2">

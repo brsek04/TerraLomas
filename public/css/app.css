@@ -1471,6 +1471,9 @@ input:checked + .toggle-bg {
 .grid {
   display: grid;
 }
+.contents {
+  display: contents;
+}
 .hidden {
   display: none;
 }
@@ -1533,6 +1536,9 @@ input:checked + .toggle-bg {
 }
 .h-9 {
   height: 2.25rem;
+}
+.h-\[236px\] {
+  height: 236px;
 }
 .h-\[750px\] {
   height: 750px;
@@ -1869,6 +1875,9 @@ input:checked + .toggle-bg {
 }
 .rounded-2xl {
   border-radius: 1rem;
+}
+.rounded-3xl {
+  border-radius: 1.5rem;
 }
 .rounded-full {
   border-radius: 9999px;
@@ -2323,6 +2332,12 @@ input:checked + .toggle-bg {
   font-size: 2.25rem;
   line-height: 2.5rem;
 }
+.text-\[17px\] {
+  font-size: 17px;
+}
+.text-\[22px\] {
+  font-size: 22px;
+}
 .text-base {
   font-size: 1rem;
   line-height: 1.5rem;
@@ -2342,6 +2357,9 @@ input:checked + .toggle-bg {
 .text-xs {
   font-size: 0.75rem;
   line-height: 1rem;
+}
+.font-\[15px\] {
+  font-weight: 15px;
 }
 .font-bold {
   font-weight: 700;
@@ -2379,6 +2397,17 @@ input:checked + .toggle-bg {
 .text-\[\#002D74\] {
   --tw-text-opacity: 1;
   color: rgb(0 45 116 / var(--tw-text-opacity));
+}
+.text-\[\#0FB478\] {
+  --tw-text-opacity: 1;
+  color: rgb(15 180 120 / var(--tw-text-opacity));
+}
+.text-\[\#3C3C4399\] {
+  color: #3C3C4399;
+}
+.text-\[\#7C7C80\] {
+  --tw-text-opacity: 1;
+  color: rgb(124 124 128 / var(--tw-text-opacity));
 }
 .text-black {
   --tw-text-opacity: 1;
@@ -2470,6 +2499,9 @@ input:checked + .toggle-bg {
 }
 .underline {
   text-decoration-line: underline;
+}
+.line-through {
+  text-decoration-line: line-through;
 }
 .antialiased {
   -webkit-font-smoothing: antialiased;
@@ -3315,6 +3347,10 @@ input:checked + .toggle-bg {
     width: 91.666667%;
   }
 
+  .sm\:w-2\/4 {
+    width: 50%;
+  }
+
   .sm\:w-40 {
     width: 10rem;
   }
@@ -3377,6 +3413,10 @@ input:checked + .toggle-bg {
     border-radius: 0.5rem;
   }
 
+  .sm\:p-6 {
+    padding: 1.5rem;
+  }
+
   .sm\:px-6 {
     padding-left: 1.5rem;
     padding-right: 1.5rem;
@@ -3436,6 +3476,10 @@ input:checked + .toggle-bg {
 
   .md\:w-2\/3 {
     width: 66.666667%;
+  }
+
+  .md\:w-3\/4 {
+    width: 75%;
   }
 
   .md\:w-3\/5 {
@@ -3540,6 +3584,10 @@ input:checked + .toggle-bg {
     height: 700px;
   }
 
+  .lg\:h-\[600px\] {
+    height: 600px;
+  }
+
   .lg\:w-1\/2 {
     width: 50%;
   }
@@ -3548,12 +3596,20 @@ input:checked + .toggle-bg {
     width: 33.333333%;
   }
 
+  .lg\:w-2\/3 {
+    width: 66.666667%;
+  }
+
+  .lg\:w-2\/4 {
+    width: 50%;
+  }
+
   .lg\:w-64 {
     width: 16rem;
   }
 
-  .lg\:w-2\/5 {
-    width: 40%;
+  .lg\:w-full {
+    width: 100%;
   }
 
   .lg\:grid-cols-3 {
