@@ -19,7 +19,7 @@ class OrderController extends Controller
 
         // Asignar los valores recibidos del formulario
         $order->user_id = $request->user_id;
-        // Asignar otros campos del pedido, si es necesario
+        $order->status = 'pending'; // Asignar el estado inicial del pedido
 
         // Guardar el pedido en la base de datos
         $order->save();

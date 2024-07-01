@@ -5,6 +5,7 @@
     <h1 class="text-3xl font-bold mb-4">Detalles de la Orden #{{ $order->id }}</h1>
     <p class="text-lg">Usuario: {{ $order->user->name }}</p>
     <p class="text-lg">Fecha: {{ $order->created_at }}</p>
+    <p class="text-lg">Estado: {{ $order->status }}</p> <!-- Mostrar el estado de la orden -->
 
     <div class="mt-8">
         <h2 class="text-2xl font-bold mb-4">Platos</h2>
