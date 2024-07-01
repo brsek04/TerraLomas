@@ -18,6 +18,13 @@ class AdminUserSeeder extends Seeder
 
         $user->assignRole($adminRole);
 
+        User::updateOrCreate([
+            'name' => 'visita',
+            'email' => 'visita@gmail.com',
+            'password' => bcrypt('12345678')
+        ]);
+
+
         // Asignar el permiso "admin" directamente al usuario
         
     }

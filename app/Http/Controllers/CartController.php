@@ -97,15 +97,16 @@ class CartController extends Controller
 
     public function checkout()
     {
-        $userId = auth()->id(); // Supongamos que tienes un sistema de autenticación y necesitas el ID del usuario
-    
+        // Verificar si el usuario está autenticado
+        $userId = auth()->check() ? auth()->id() : 2; // Si no está autenticado, usar el ID 2
+        
         $order = Order::create([
             'user_id' => $userId,
             // Otros campos de la orden, si los hay
         ]);
-    
+
         $cartCollection = \Cart::getContent();
-    
+
         foreach ($cartCollection as $item) {
             if ($item->attributes->type == 'dish') {
                 // Obtener el ID del plato eliminando el prefijo 'dish_'
@@ -129,24 +130,25 @@ class CartController extends Controller
                 ]);
             }
         }
-    
+
         \Cart::clear();
-    
+
         // Generar el código QR con una URL que redirija a la vista de detalles de la orden
         $qrCode = new QrCode(route('order.show', ['order' => $order->id]));
         $qrCode->setSize(300);
-    
+
         // Crear un objeto PngWriter
         $qrCodeWriter = new PngWriter();
-    
+
         // Generar el contenido del código QR como una cadena
         $qrCodeData = $qrCodeWriter->write($qrCode)->getString();
-    
+
         // Devolver el código QR como una respuesta HTTP con el contenido de la cadena
         return Response::make($qrCodeData, 200, [
             'Content-Type' => 'image/png',
             'Content-Disposition' => 'inline; filename="qrcode.png"',
         ]);
     }
+
     
 }
