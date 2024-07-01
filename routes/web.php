@@ -131,6 +131,9 @@ Route::get('/shop/{menuId}/filter', [CartController::class, 'filter'])->name('sh
 
 Route::get('/order/{order}', [OrderController::class, 'show'])->name('order.show');
 
+Route::post('/cart/checkout', [CartController::class, 'checkout'])->name('cart.checkout');
+
+
 Route::get('/scan', function () {
     return view('scan');
 })->name('scan');
