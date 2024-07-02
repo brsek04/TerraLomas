@@ -10,11 +10,12 @@
             <div class="absolute inset-0 bg-black bg-opacity-45"></div>
             <div class="relative container mx-auto px-4 text-white">
                 <div class="w-full md:w-9/12">
-                    <h2 class="slider_title text-white text-4xl md:text-5xl lg:text-6xl font-bold leading-tight mb-4 wow fadeInUp">Estás comprando en {{ $menu->name }}</h2>
+                    <h2 class="slider_title text-white text-4xl md:text-5xl lg:text-6xl font-bold leading-tight mb-4  animate__animated animate__fadeInUp">Estás mirando en {{ $menu->name }}</h2>
                     <div class="flex flex-wrap sm:flex-row sm:space-x-6 sm:space-y-0 py-10">
-                       
-                        <div class="overflow-hidden rounded-lg p-2">
-                            <h4 class="text-white font-serif font-bold text-2xl dark:text-white mb-4"></h4>
+                        <div class="flex flex-wrap sm:flex-row sm:space-x-6 sm:space-y-0 py-10 ">
+                            <div class=" overflow-hidden rounded-lg p-2">
+                                <a href="{{ route('branch.menus', $menu->id) }}" rel="nofollow" class="main-btn inline-block bg-orange-600 text-white font-bold py-3 px-6 rounded-lg hover:bg-orange-700 transition-all duration-300">Volver a pagina principal</a>
+                            </div>
                         </div>
                        
                     </div>
@@ -22,6 +23,20 @@
             </div>
         </div>
     </section>
+    
+    <div class="flex justify-center">
+        <div class="lg:w-1/2">
+            <div class="text-center pt-10">
+                <h4 class="text-4xl sm:text-3xl md:text-3xl lg:text-4xl font-bold text-white">Menú</h4>
+                <div class="relative h-0.5 w-36 bg-[#E54E1B] rounded-full mx-auto mt-6">
+                    <div class="absolute top-[-6px] left-1/2 w-4 h-4 bg-[#E54E1B] transform -translate-x-1/3 rotate-45">
+                        <div class="absolute top-1.5 left-[-8px] w-full h-full bg-[#E54E1B]/30"></div>
+                        <div class="absolute top-[-7px] right-[-7px] w-full h-full bg-[#E54E1B]/30"></div>
+                    </div>
+                </div>
+            </div> <!-- section title -->
+        </div>
+    </div> <!-- row -->
 
     <section id="contenidoMenu" class="content-inner-1 lg:pt-[100px] sm:pt-[70px] pt-[50px] pb-10 relative overflow-hidden">
         <div class="container mx-auto">
@@ -64,28 +79,140 @@
                 </div>
             </div>
             <!--menu empieza-->
-            <div>
-                <ul id="tarjetaMenu" style="position: relative; height: 1141.17px;" class="row dlab-gallery-listing gallery">
-                    <li class="card-container lg:w-1/3 md:w-1/2 w-full px-[15px] mb-[30px] All drink sweet salad" style="position: absolute; left: 0px; top: 0px;">
-                        <div class="dz-img-box7 rounded-[10px] bg-white text-center relative h-full duration-200 overflow-hidden z-[1] shadow-[0px_15px_55px_rgba(34,34,34,0.15)]">
-                            <div class="dz-media relative overflow-hidden">
-                                <img src="https://i.pinimg.com/564x/50/ef/98/50ef98ff7c1d5baadc1941388ca788d7.jpg" class="duration-300" alt="">
+            <div class="max-w mx-auto px-4 sm:px-6 lg:px-8 w-full bg-gray-500 pb-8 pt-4 rounded-md shadow-xl">
+                @if(isset($items) && count($items))
+                @if(request()->has('type') && request()->has('typeId'))
+                    @php
+                        $type = request()->get('type');
+                        $typeId = request()->get('typeId');
+                    @endphp
+                    <h5 class="text-xl font-semibold mb-4">Filtrados por {{ ucfirst($typeName) }}</h5>
+                @endif
+                <ul id="menuTodo" style="position: relative;" class="flex flex-wrap row dlab-gallery-listing gallery">
+                    @foreach($items as $item)
+                        <li class="card-container lg:w-1/3 md:w-1/2 w-full px-[15px] mb-[30px] All drink sweet salad">
+                            <div class="max-w-md mx-auto bg-white rounded-3xl shadow-xl overflow-hidden transform transition-all hover:scale-105">
+                                <div class="max-w-md mx-auto">
+                                    <div id="imagen" class="h-[236px]" style="background-image:url('{{ asset($item->photo) }}'); background-size:cover; background-position:center"></div>
+                                    <div class="p-4 sm:p-6">
+                                        <p id="titulo" class="font-bold text-gray-700 text-[22px] leading-7 mb-1">{{ $item->name }}</p>
+                                        <div class="flex flex-row">
+                                            <p id="presio" class="text-black text-[17px] mr-2 ">${{ $item->price }}</p>
+                                          
+                                        </div>
+                                        <p id="descripcion" class="text-[#7C7C80] font-[15px] mt-6">{{ $item->description }}</p>
+                                        <form action="{{ route('cart.add') }}" method="POST">
+                                            @csrf
+                                            <input type="hidden" value="{{ $item->id }}" id="id" name="id">
+                                            <input type="hidden" value="{{ $item->name }}" id="name" name="name">
+                                            <input type="hidden" value="{{ $item->price }}" id="price" name="price">
+                                            <input type="hidden" value="{{ $item->photo }}" id="photo" name="photo">
+                                            <input type="hidden" value="{{ $type }}" id="type" name="type">
+                                            <input type="hidden" value="1" id="quantity" name="quantity">
+                                            <button type="submit" class="mt-4 flex items-center justify-center w-full bg-orange-500 hover:bg-orange-800 focus:ring-4 focus:outline-none focus:ring-orange-300 text-white font-medium rounded-lg text-sm px-5 py-2.5">
+                                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-4 h-4 mr-2">
+                                                    <path stroke-linecap="round" stroke-linejoin="round" d="M2.25 3h1.386c.51 0 .955.343 1.087.835l.383 1.437M7.5 14.25a3 3 0 0 0-3 3h15.75m-12.75-3h11.218c1.121-2.3 2.1-4.684 2.924-7.138a60.114 60.114 0 0 0-16.536-1.84M7.5 14.25 5.106 5.272M6 20.25a.75.75 0 1 1-1.5 0 .75.75 0 0 1 1.5 0Zm12.75 0a.75.75 0 1 1-1.5 0 .75.75 0 0 1 1.5 0Z" />
+                                                </svg>  
+                                                Agregar al carrito
+                                            </button>
+                                        </form>
+                                    </div>
+                                </div>
                             </div>
-                            <div class="dz-content flex flex-col lg:py-[25px] py-5 lg:px-5 px-[15px]">
-                                <h5 class="title text-black2 mb-2"><a href="product-detail.html">Burger</a></h5>
-                                <p class="mb-[10px] text-sm">It is a long established fact that a reader will be distracted by the readable.</p>
-                                <span class="price text-2xl font-semibold leading-[1.1]">$4.56</span>
-                            </div>
-                        </div>
-                    </li>
+                        </li>
+                    @endforeach
                 </ul>
+            @endif
+                @if(!isset($items))
+                @if($menu->dishes->count())
+                    <h5 class="text-xl text-white font-semibold mb-4">Platos</h5>
+                    <div class="flex-grow border-t border-orange-400 p-5"></div>
+                    <ul id="menuTodo" style="position: relative;" class="flex flex-wrap row dlab-gallery-listing gallery">
+                        @foreach($menu->dishes as $dish)
+                            <li class="card-container lg:w-1/3 md:w-1/2 w-full px-[15px] mb-[30px] All drink sweet salad">
+                                <div class="max-w-md mx-auto bg-white rounded-3xl shadow-xl overflow-hidden transform transition-all hover:scale-105">
+                                    <div class="max-w-md mx-auto">
+                                        <div id="imagen" class="h-[236px]" style="background-image:url('{{ asset($dish->photo) }}'); background-size:cover; background-position:center"></div>
+                                        <div class="p-4 sm:p-6">
+                                            <p id="titulo" class="font-bold text-gray-700 text-[22px] leading-7 mb-1">{{ $dish->name }}</p>
+                                            <div class="flex flex-row">
+                                                <p id="presio" class="text-[#3C3C4399] text-[17px] mr-2 text-black">${{ $dish->price }}</p>
+                                            </div>
+                                            <p id="descripcion" class="text-[#7C7C80] font-[15px] mt-6">{{ $dish->description }}</p>
+                                            <form action="{{ route('cart.add') }}" method="POST">
+                                                @csrf
+                                                <input type="hidden" value="{{ $dish->id }}" id="id" name="id">
+                                                <input type="hidden" value="{{ $dish->name }}" id="name" name="name">
+                                                <input type="hidden" value="{{ $dish->price }}" id="price" name="price">
+                                                <input type="hidden" value="{{ $dish->photo }}" id="photo" name="photo">
+                                                <input type="hidden" value="dish" id="type" name="type">
+                                                <input type="hidden" value="1" id="quantity" name="quantity">
+                                                <button type="submit" class="mt-4 flex items-center justify-center w-full bg-orange-500 hover:bg-orange-800 focus:ring-4 focus:outline-none focus:ring-orange-300 text-white font-medium rounded-lg text-sm px-5 py-2.5">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-4 h-4 mr-2">
+                                                        <path stroke-linecap="round" stroke-linejoin="round" d="M2.25 3h1.386c.51 0 .955.343 1.087.835l.383 1.437M7.5 14.25a3 3 0 0 0-3 3h15.75m-12.75-3h11.218c1.121-2.3 2.1-4.684 2.924-7.138a60.114 60.114 0 0 0-16.536-1.84M7.5 14.25 5.106 5.272M6 20.25a.75.75 0 1 1-1.5 0 .75.75 0 0 1 1.5 0Zm12.75 0a.75.75 0 1 1-1.5 0 .75.75 0 0 1 1.5 0Z" />
+                                                    </svg>  
+                                                    Agregar al carrito
+                                                </button>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                            </li>
+                        @endforeach
+                    </ul>
+                @endif
+                
+                @if($menu->beverages->count())
+                    <h5 class="text-2xl flex items-center text-white font-semibold mb-4 mt-8">
+                        Bebidas
+                        <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#e8eaed"><path d="M240-120v-80h200v-200L120-760v-80h720v80L520-400v200h200v80H240Zm58-560h364l72-80H226l72 80Zm182 204 111-124H369l111 124Zm0 0Z"/>
+                        </svg>
+                      
+                    </h5>
+                    <div class="flex-grow border-t border-orange-400 p-5"></div>
+                    <ul id="menuTodo" style="position: relative;" class="flex flex-wrap row dlab-gallery-listing gallery">
+                        @foreach($menu->beverages as $beverage)
+                        <li class="card-container lg:w-1/3 md:w-1/2 w-full px-[15px] mb-[30px] All drink sweet salad" >
+                            <div class="max-w-md mx-auto bg-white rounded-3xl shadow-xl overflow-hidden ">
+                                <div class="max-w-md mx-auto">
+                                        <div id="imagen" class="h-[236px]" style="background-image:url('{{ asset($beverage->photo) }}'); background-size:cover; background-position:center"></div>
+                                        <div class="p-4 sm:p-6">
+                                            <p id="titulo" class="font-bold text-gray-700 text-[22px] leading-7 mb-1">{{ $beverage->name }}</p>
+                                            <div class="flex flex-row">
+                                                <p id="presio" class="text-[#3C3C4399] text-[17px] mr-2 text-black">${{ $beverage->price }}</p>
+                                            </div>
+                                            <p id="descripcion" class="text-[#7C7C80] font-[15px] mt-6">{{ $beverage->description }}</p>
+                                            <form action="{{ route('cart.add') }}" method="POST">
+                                                @csrf
+                                                <input type="hidden" value="{{ $beverage->id }}" id="id" name="id">
+                                                <input type="hidden" value="{{ $beverage->name }}" id="name" name="name">
+                                                <input type="hidden" value="{{ $beverage->price }}" id="price" name="price">
+                                                <input type="hidden" value="{{ $beverage->photo }}" id="photo" name="photo">
+                                                <input type="hidden" value="beverage" id="type" name="type">
+                                                <input type="hidden" value="1" id="quantity" name="quantity">
+                                                <button type="submit" class="mt-4 flex items-center justify-center w-full bg-orange-500 hover:bg-orange-800 focus:ring-4 focus:outline-none focus:ring-orange-300 text-white font-medium rounded-lg text-sm px-5 py-2.5">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-4 h-4 mr-2">
+                                                        <path stroke-linecap="round" stroke-linejoin="round" d="M2.25 3h1.386c.51 0 .955.343 1.087.835l.383 1.437M7.5 14.25a3 3 0 0 0-3 3h15.75m-12.75-3h11.218c1.121-2.3 2.1-4.684 2.924-7.138a60.114 60.114 0 0 0-16.536-1.84M7.5 14.25 5.106 5.272M6 20.25a.75.75 0 1 1-1.5 0 .75.75 0 0 1 1.5 0Zm12.75 0a.75.75 0 1 1-1.5 0 .75.75 0 0 1 1.5 0Z" />
+                                                    </svg>  
+                                                    Agregar al carrito
+                                                </button>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                            </li>
+                        @endforeach
+                    </ul>
+                    @endif
+                    @endif
             </div>
         </div>
     </section>
-
-    
-
 </div>
+
+
+
+
 <div class="w-full max-h-max">
     <div class="w-full px-2">
         <div class="py-2">

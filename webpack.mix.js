@@ -17,7 +17,7 @@ const tailwindcss = require('tailwindcss');
     },
 }); 
 
-mix.js('resources/js/app.js', 'public/js')
+mix.js('resources/js/app.js', 'public/js','public/assets/js')
    .postCss('resources/css/app.css', 'public/css', [
        tailwindcss('./tailwind.config.js'),
    ])
