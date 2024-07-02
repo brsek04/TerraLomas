@@ -27,30 +27,9 @@
 
     @yield('page_css')
     @yield('css')
-    
- 
 </head>
 <body class="font-sans antialiased bg-gray-50 w-full dark:bg-[#0F172A]">
-    <!--====== PRELOADER PART START ======-->
 
-    <div class="preloader">
-        <div class="loader">
-            <div class="ytp-spinner">
-                <div class="ytp-spinner-container">
-                    <div class="ytp-spinner-rotator">
-                        <div class="ytp-spinner-left">
-                            <div class="ytp-spinner-circle"></div>
-                        </div>
-                        <div class="ytp-spinner-right">
-                            <div class="ytp-spinner-circle"></div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!--====== PRELOADER PART ENDS ======-->
 <div class="min-h-screen  w-full bg-cover dark:bg-[#0F172A]">
     <nav class="bg-gray-900 dark:bg-gray-900 fixed w-full z-20 top-0 start-0  dark:border-gray-600 shadow-xl">
         @include('elements.header')
@@ -61,7 +40,6 @@
                 @include('elements.sidebar-admin')
             @endif
         @endauth
-        
     <main>
         @auth
             @if(Auth::user()->hasRole('admin'))
