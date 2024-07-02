@@ -72,10 +72,9 @@ Route::post('/reservas', [ReservaController::class, 'store'])->name('reservas.st
 
 Route::resource('mesas', MesaController::class);
 
-
-Route::get('/user-actions', [UserActionController::class, 'index'])->name('user.actions');
-
-Route::put('/reservas/{id}/rechazar', [ReservaController::class, 'rechazar'])->name('reservas.rechazar');
+Route::get('/user-profile', [UserActionController::class, 'index'])->name('user-profile');
+Route::get('/all-reservations', [UserActionController::class, 'allReservations'])->name('all-reservations');
+Route::put('/reservas/rechazar/{id}', [UserActionController::class, 'rechazar'])->name('reservas.rechazar');
 
 
 
