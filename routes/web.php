@@ -125,14 +125,13 @@ Route::post('/cart/checkout', [CartController::class, 'checkout'])->name('cart.c
 // Shop Routes
 Route::get('/shop/{menuId}', [CartController::class, 'shop'])->name('shop.index');
 Route::get('/shop/{menuId}/filter', [CartController::class, 'filter'])->name('shop.filter');
-
+Route::post('/cart/checkout', [CartController::class, 'checkout'])->name('cart.checkout');
 
 
 Route::get('/order/{order}', [OrderController::class, 'show'])->name('order.show');
-
+Route::put('/order/{order}', [OrderController::class, 'update'])->name('order.update');
 Route::get('/orders', [OrderController::class, 'index'])->name('order.index');
 
-Route::post('/cart/checkout', [CartController::class, 'checkout'])->name('cart.checkout');
 
 
 

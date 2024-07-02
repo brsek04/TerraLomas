@@ -42,4 +42,13 @@ class OrderController extends Controller
         return view('order.index', compact('orders'));
     }
 
+    public function update(Request $request, Order $order)
+{
+    $order->status = $request->status;
+    $order->save();
+
+    return redirect()->route('order.show', $order->id)->with('success_msg', 'Estado de la orden actualizado correctamente.');
+}
+
+
 }

@@ -1,4 +1,3 @@
-<!-- resources/views/scan.blade.php -->
 @extends('layouts.app')
 
 @section('content')
@@ -18,14 +17,12 @@
         scanner.addListener('scan', function(content) {
             console.log('Escaneado:', content);
             
-            // Mostrar el contenido del QR detectado en pantalla
             const qrResultElement = document.getElementById('qr-reader-results');
             qrResultElement.textContent = `Resultado: ${content}`;
             
-            // Redireccionar después de detectar el código QR
             setTimeout(() => {
-                window.location.href = content; // Redirige a la URL escaneada
-            }, 1000); // Redirige después de 3 segundos (ajustable según necesidades)
+                window.location.href = content; 
+            }, 1000); 
         });
         
         Instascan.Camera.getCameras().then(function(cameras) {
