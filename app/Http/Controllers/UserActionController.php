@@ -20,6 +20,7 @@ class UserActionController extends Controller
         // Obtener reservas del usuario con las mesas asociadas
         $reservas = Reserva::where('cliente_email', $user->email)
                            ->with('mesa.branch')
+                           ->orderBy('fecha_hora')
                            ->get();
 
         return view('user_actions.index', compact('user', 'reservas'));
@@ -27,8 +28,10 @@ class UserActionController extends Controller
 
     public function allReservations()
     {
-        // Obtener todas las reservas con las mesas y sucursales asociadas
-        $reservas = Reserva::with('mesa.branch')->get();
+        // Obtener todas las reservas con las mesas y sucursales asociadas, ordenadas por fecha
+        $reservas = Reserva::with('mesa.branch')
+                           ->orderBy('fecha_hora')
+                           ->get();
 
         return view('user_actions.all', compact('reservas'));
     }

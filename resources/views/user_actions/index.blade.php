@@ -13,7 +13,7 @@
     <table class="table">
         <thead>
             <tr>
-                <th>ID</th>
+                
                 <th>Fecha y Hora</th>
                 <th>Nombre del Cliente</th>
                 <th>Email del Cliente</th>
@@ -27,7 +27,7 @@
         <tbody>
             @foreach ($reservas as $reserva)
             <tr>
-                <td>{{ $reserva->id }}</td>
+                
                 <td>{{ $reserva->fecha_hora }}</td>
                 <td>{{ $reserva->cliente_nombre }}</td>
                 <td>{{ $reserva->cliente_email }}</td>
