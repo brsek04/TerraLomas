@@ -61,4 +61,9 @@ class Dish extends Model
     {
         return $this->belongsTo(DishInOrder::class, 'dish_id');
     }
+
+    public function recommendations()
+    {
+        return $this->belongsToMany(Recommendation::class, 'dish_in_recommendation', 'dish_id', 'recommendation_id');
+    }
 }

@@ -54,4 +54,9 @@ class Beverage extends Model
     {
         return $this->belongsTo(BeverageInOrder::class, 'beverage_id');
     }
+
+    public function recommendations()
+    {
+        return $this->belongsToMany(Recommendation::class, 'beverage_in_recommendation', 'beverage_id', 'recommendation_id');
+    }
 }

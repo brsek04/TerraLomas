@@ -138,3 +138,6 @@ Route::get('/orders', [OrderController::class, 'index'])->name('order.index');
 Route::get('/scan', function () {
     return view('scan');
 })->name('scan');
+
+use App\Http\Controllers\RecommendationController;
+Route::resource('recommendations', RecommendationController::class);
