@@ -6,7 +6,7 @@
 
 <div class="w-full min-h-screen flex flex-col bg-gray-900">
     <section id="menu-cart" class="pt-28">
-        <div class="relative bg-cover flex items-center h-[750px] md:h-[950px] lg:h-[600px] sm:h-[650px]" style="background-image: url('{{ asset('images/logos/appsbg.jpg') }}');">
+        <div class="relative bg-cover flex items-center h-[500px] md:h-[500px] lg:h-[500px] sm:h-[500px]" style="background-image: url('{{ asset('images/logos/appsbg.jpg') }}');">
             <div class="absolute inset-0 bg-black bg-opacity-45"></div>
             <div class="relative container mx-auto px-4 text-white">
                 <div class="w-full md:w-9/12">
@@ -23,7 +23,67 @@
         </div>
     </section>
 
+    <section id="contenidoMenu" class="content-inner-1 lg:pt-[100px] sm:pt-[70px] pt-[50px] pb-10 relative overflow-hidden">
+        <div class="container mx-auto">
+            <div class="w-full flex justify-center">
+                <div class="xl:w-10/12 lg:w-9/12 w-full px-[15px]">
+                    <div class="flex lg:mb-10 mb-[30px] sm:text-left text-center ">
+                        <ul class="flex flex-wrap w-full justify-center style-1">
+                            <li class="lg:py-2 rounded-sm lg:px-[15px] p-2 lg:mr-[10px] mr-[5px] duration-500 active:bg-orange-900 bg-orange-500 hover:bg-orange-700">
+                                <a href="#" class="flex items-center lg:text-[15px] text-[13px] overflow-hidden">
+                                    <span class="mb-0 text-white">
+                                        TODO
+                                    </span>    
+                                </a>
+                            </li>
+                            <li class="lg:py-2 lg:px-[15px] rounded-sm p-2 lg:mr-[10px] mr-[5px] duration-500 active:bg-orange-900 bg-orange-500 hover:bg-orange-700">
+                                <a href="#" class="flex items-center lg:text-[15px] text-[13px] overflow-hidden">
+                                    <span class="mb-0 text-white">
+                                        PLATOS
+                                    </span>    
+                                </a>
+                            </li>
+                            <li class="lg:py-2 lg:px-[15px] rounded-sm p-2 lg:mr-[10px] mr-[5px] duration-500 active:bg-orange-900 bg-orange-500 hover:bg-orange-700">
+                                <a href="#" class="flex items-center lg:text-[15px] text-[13px] overflow-hidden">
+                                    <span class="mb-0 text-white">
+                                        POSTRES
+                                    </span>    
+                                </a>
+                            </li>
+                            <li class="flex lg:py-2 lg:px-[15px] rounded-sm  p-2 lg:mr-[10px] mr-[5px] duration-500 active:bg-orange-900 bg-orange-500 hover:bg-orange-700">
+                                <a href="#" class="flex items-center lg:text-[15px] text-[13px] overflow-hidden">
+                                    <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#e8eaed"><path d="M240-120v-80h200v-200L120-760v-80h720v80L520-400v200h200v80H240Zm58-560h364l72-80H226l72 80Zm182 204 111-124H369l111 124Zm0 0Z"/>
+                                    </svg>
+                                    <span class="mb-0 text-white">
+                                        BEBIDAS FRÍAS
+                                    </span>    
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <!--menu empieza-->
+            <div>
+                <ul id="tarjetaMenu" style="position: relative; height: 1141.17px;" class="row dlab-gallery-listing gallery">
+                    <li class="card-container lg:w-1/3 md:w-1/2 w-full px-[15px] mb-[30px] All drink sweet salad" style="position: absolute; left: 0px; top: 0px;">
+                        <div class="dz-img-box7 rounded-[10px] bg-white text-center relative h-full duration-200 overflow-hidden z-[1] shadow-[0px_15px_55px_rgba(34,34,34,0.15)]">
+                            <div class="dz-media relative overflow-hidden">
+                                <img src="https://i.pinimg.com/564x/50/ef/98/50ef98ff7c1d5baadc1941388ca788d7.jpg" class="duration-300" alt="">
+                            </div>
+                            <div class="dz-content flex flex-col lg:py-[25px] py-5 lg:px-5 px-[15px]">
+                                <h5 class="title text-black2 mb-2"><a href="product-detail.html">Burger</a></h5>
+                                <p class="mb-[10px] text-sm">It is a long established fact that a reader will be distracted by the readable.</p>
+                                <span class="price text-2xl font-semibold leading-[1.1]">$4.56</span>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </section>
 
+    
 
 </div>
 <div class="w-full max-h-max">
