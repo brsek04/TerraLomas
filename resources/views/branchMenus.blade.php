@@ -383,9 +383,13 @@
                     <h4 class="text-4xl font-bold lg:text-4xl md:text-3xl sm:text-3xl text-gray-900">¡Ven a visitarnos!</h4>
                     <div class="flex flex-wrap sm:flex-row sm:space-x-6 sm:space-y-0 py-10">
                         @foreach ($menus as $menu)
-                        <div class="overflow-hidden rounded-lg p-2">
-                            <a href="{{ route('reservas.create', $branch->id) }}" rel="nofollow" class="main-btn inline-block bg-orange-600 wow fadeIn text-white font-bold py-3 px-6 rounded-lg hover:bg-orange-700 transition-all duration-300">{{ __('Reserva en ') }} {{ $branch->name }}</a>
-                        </div>
+                            <div class="overflow-hidden rounded-lg p-2">
+                                @auth
+                                    <a href="{{ route('reservas.create', $branch->id) }}" class="main-btn inline-block bg-orange-600 wow fadeIn text-white font-bold py-3 px-6 rounded-lg hover:bg-orange-700 transition-all duration-300">{{ __('Reserva en ') }} {{ $branch->name }}</a>
+                                @else
+                                    <a href="{{ route('login') }}" class="main-btn inline-block bg-orange-600 wow fadeIn text-white font-bold py-3 px-6 rounded-lg hover:bg-orange-700 transition-all duration-300">{{ __('Inicia sesión para reservar en ') }} {{ $branch->name }}</a>
+                                @endauth
+                            </div>
                         @endforeach
                     </div>
                     <p class="mt-6 text-gray-600">Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr. <br></p>
