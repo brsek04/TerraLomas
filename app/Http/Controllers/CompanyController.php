@@ -13,8 +13,7 @@ class CompanyController extends Controller
 {
 
     function __construct(){
-        $this->middleware('permission:ver-compañias',['only'=>['index']]);
-
+        $this->middleware('permission:datos');
     }
     /**
      * 

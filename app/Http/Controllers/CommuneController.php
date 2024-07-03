@@ -16,6 +16,10 @@ class CommuneController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
+     function __construct(){
+        $this->middleware('permission:datos');
+    }
     public function index()
     {
         $communes = Commune::paginate();

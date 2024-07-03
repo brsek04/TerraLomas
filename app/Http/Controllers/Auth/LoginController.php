@@ -43,6 +43,16 @@ class LoginController extends Controller
         } else {
             return redirect('/visitante');
         }
+        if ($user->hasRole('garzon')) {
+            return redirect('/waiter');
+        } else {
+            return redirect('/scan');
+        }
+        if ($user->hasRole('cocina')) {
+            return redirect('/kitchen');
+        } else {
+            return redirect('/mesas');
+        }
     }
 
     /**

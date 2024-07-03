@@ -5,25 +5,28 @@
 @section('content')
 
 <div class="w-full min-h-screen flex flex-col bg-gray-900">
-    <div class="relative bg-cover flex items-center h-[750px] md:h-[950px] lg:h-[700px] sm:h-[650px]" style="background-image: url('images/logos/bannerbg.jpg');">
-        <div class="absolute inset-0 bg-black bg-opacity-45"></div>
-        <div class="relative container mx-auto px-4 text-white">
-            <div class="w-full md:w-9/12">
-                <h2 class="slider_title text-white text-4xl md:text-5xl lg:text-6xl font-bold leading-tight mb-4 wow fadeInUp">Nuestras sucursales</h2>
-                <p class="text-white text-lg font-medium leading-7 mb-6 wow fadeInUp">Nos enorgullece presentarte nuestras sucursales, cada una diseñada para brindarte la mejor experiencia posible.
-                    Descubre nuestras instalaciones y servicios únicos en cada ubicación, 
-                    donde te garantizamos encontrarás la calidad y atención que nos caracteriza y mereces.</p>
-                    <div class="flex flex-wrap sm:flex-row sm:space-x-6 sm:space-y-0 py-10 ">
-                        @foreach ($branches as $branch)
-                        <div class=" overflow-hidden rounded-lg p-2">
-                            <a href="{{ route('branch.menus', $branch->id) }}" rel="nofollow" class="main-btn inline-block bg-orange-600 text-white font-bold py-3 px-6 rounded-lg hover:bg-orange-700 transition-all duration-300">{{ $branch->name }}</a>
+    <section id="sucursal" class="pt-28">
+        <div  class="relative bg-cover flex items-center h-[750px] md:h-[950px] lg:h-[700px] sm:h-[650px]" style="background-image: url('images/logos/bannerbg.jpg');">
+            <div class="absolute inset-0 bg-black bg-opacity-45"></div>
+            <div class="relative container mx-auto px-4 text-white">
+                <div class="w-full md:w-9/12">
+                    <h2 class="slider_title text-white text-4xl md:text-5xl lg:text-6xl font-bold leading-tight mb-4 wow fadeInUp">Nuestras sucursales</h2>
+                    <p class="text-white text-lg font-medium leading-7 mb-6 wow fadeInUp">Nos enorgullece presentarte nuestras sucursales, cada una diseñada para brindarte la mejor experiencia posible.
+                        Descubre nuestras instalaciones y servicios únicos en cada ubicación, 
+                        donde te garantizamos encontrarás la calidad y atención que nos caracteriza y mereces.</p>
+                        <div class="flex flex-wrap sm:flex-row sm:space-x-6 sm:space-y-0 py-10 ">
+                            @foreach ($branches as $branch)
+                            <div class=" overflow-hidden rounded-lg p-2">
+                                <a href="{{ route('branch.menus', $branch->id) }}" rel="nofollow" class="main-btn inline-block bg-orange-600 text-white font-bold py-3 px-6 rounded-lg hover:bg-orange-700 transition-all duration-300">{{ $branch->name }}</a>
+                            </div>
+                            @endforeach
                         </div>
-                        @endforeach
-                    </div>
-                   
+                       
+                </div>
             </div>
         </div>
-    </div>
+    </section>
+
     <section id="coffee" class="pt-28">
         <div class="container mx-auto">
             <div class="flex justify-center">
@@ -58,7 +61,7 @@
                             <svg xmlns="http://www.w3.org/2000/svg" height="50px" viewBox="0 -960 960 960" width="50px" fill="#e8eaed"><path d="m160-120-80-80h800l-80 80H160Zm-40-120q6-18 16-34t24-30v-296h-40v-60h40v-30h-40v-60h40v-30h-40v-60h280q33 0 56.5 23.5T480-760v10h360v60H480v10q0 33-23.5 56.5T400-600h-80v244q14 2 28 6t26 12q26-65 83-103.5T583-480q90 0 153.5 61.5T800-268v28H120Zm334-80h252q-17-36-50-58t-73-22q-42 0-77 21t-52 59ZM320-750h80v-30h-80v30Zm0 90h80v-30h-80v30Zm-100-90h40v-30h-40v30Zm0 90h40v-30h-40v30Zm0 314q10-5 19.5-7.5T260-358v-242h-40v254Zm360 26Z"/></svg>
                             <div class="p-2 text-center mt-4">
                                 <h4 class="text-xl font-bold text-white">La mejor calidad en Comida</h4>
-                                <p class="mt-4 text-gray-300">Lorem Ipsum is simply dummy of the printing industry.</p>
+                                <p class="mt-4 text-gray-300">Productos frescos, desde el mar a su mesa.</p>
                             </div>
                         </div>
                         
@@ -72,7 +75,7 @@
                               </svg>                              
                             <div class="p-2 text-center mt-4">
                                 <h4 class="text-xl font-bold text-white">Todo medio de pago</h4>
-                                <p class="mt-4 text-gray-300">Lorem Ipsum is simply dummy of the printing industry.</p>
+                                <p class="mt-4 text-gray-300">Contamos con todo sistema de pago, y posibilidad de cuotas.</p>
                             </div>
                         </div>
                         
@@ -107,16 +110,16 @@
                 <div class="lg:w-1/2 w-full">
                     <div class="mt-12 wow fadeInLeftBig p-4" data-wow-duration="1.3s" data-wow-delay="0.5s">
                         <h4 class="text-4xl font-bold lg:text-4xl md:text-3xl sm:text-3xl text-white">Nuestra Historia</h4>
-                        <p class="mt-6 text-gray-600">Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr. <br> <br> Sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum.</p>
+                        <p class="mt-6 text-gray-600">En TerraLomas celebramos la riqueza y frescura del mar con cada plato que servimos. Nuestro restuarante se especializa en ofrecer una exquisita variedad de productos provenientes del océano, seleccionados cuidadosamente para brindarte una experiencia culinaria única. <br> <br> Desde nuestros suculentos mariscos hasta los pescados mas frescos, cada ingrediente es tratado con respeto y creatividad por nuestros talentosos chefs. En TerraLomas, nos enorgullece ofrecerte no solo comida, sino una auténtica experiencia gastronómica que captura la esencia de los sabores marinos.</p>
                         <ul class="flex flex-wrap pt-8">
                             <li class="inline-block mt-2">
-                                <a href="https://www.facebook.com/terralomas" >
+                                <a href="https://www.instagram.com/terralomas/" >
                                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-7 h-7 text-orange-400 transition-all ease-in-out duration-500 hover:text-white">
                                         <path d="M 8 3 C 5.243 3 3 5.243 3 8 L 3 16 C 3 18.757 5.243 21 8 21 L 16 21 C 18.757 21 21 18.757 21 16 L 21 8 C 21 5.243 18.757 3 16 3 L 8 3 z M 8 5 L 16 5 C 17.654 5 19 6.346 19 8 L 19 16 C 19 17.654 17.654 19 16 19 L 8 19 C 6.346 19 5 17.654 5 16 L 5 8 C 5 6.346 6.346 5 8 5 z M 17 6 A 1 1 0 0 0 16 7 A 1 1 0 0 0 17 8 A 1 1 0 0 0 18 7 A 1 1 0 0 0 17 6 z M 12 7 C 9.243 7 7 9.243 7 12 C 7 14.757 9.243 17 12 17 C 14.757 17 17 14.757 17 12 C 17 9.243 14.757 7 12 7 z M 12 9 C 13.654 9 15 10.346 15 12 C 15 13.654 13.654 15 12 15 C 10.346 15 9 13.654 9 12 C 9 10.346 10.346 9 12 9 z"/>
                                     </svg>
                                 </a>
                             </li>
-                            <li class="inline-block mt-2 ml-4"><a href="#" class="w-9 h-9 leading-9 text-center bg-orange-600 text-white rounded-md transition-all duration-300 ease-out hover:bg-[#E54E1B]">                      
+                            <li class="inline-block mt-2 ml-4"><a href="https://www.facebook.com/terralomas" class="w-9 h-9 leading-9 text-center bg-orange-600 text-white rounded-md transition-all duration-300 ease-out hover:bg-[#E54E1B]">                      
                                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 50 50" fill="currentColor" class="w-7 h-7 text-orange-400 transition-all ease-in-out duration-500 hover:text-white">
                                         <path d="M25,3C12.85,3,3,12.85,3,25c0,11.03,8.125,20.137,18.712,21.728V30.831h-5.443v-5.783h5.443v-3.848 c0-6.371,3.104-9.168,8.399-9.168c2.536,0,3.877,0.188,4.512,0.274v5.048h-3.612c-2.248,0-3.033,2.131-3.033,4.533v3.161h6.588 l-0.894,5.783h-5.694v15.944C38.716,45.318,47,36.137,47,25C47,12.85,37.15,3,25,3z"/>
                                     </svg>
@@ -128,40 +131,40 @@
         </div> <!-- container -->
     </section>
 <!--====== ABOUT END ======-->
-<!--====== CONVENIO PART START ======-->
-<section id="customer" class="customer_area py-10">
-    <div class="container mx-auto ">
-        <div class="flex justify-center">
-            <div class="w-full lg:w-1/2">
-                <div class="text-center pb-8">
-                    <h4 class="text-2xl font-semibold">Convenios</h4>
-                    <div class="relative h-0.5 w-36 bg-[#E54E1B] rounded-full mx-auto mt-6">
-                        <div class="absolute top-[-6px] left-1/2 w-4 h-4 bg-[#E54E1B] transform -translate-x-1/3 rotate-45">
-                            <div class="absolute top-1.5 left-[-8px] w-full h-full bg-[#E54E1B]/30"></div>
-                            <div class="absolute top-[-7px] right-[-7px] w-full h-full bg-[#E54E1B]/30"></div>
+ <!--====== CONVENIO PART START ======-->
+ <section id="convenios" class="convenios_area py-20">
+        <div class="container mx-auto">
+            <div class="flex justify-center">
+                <div class="w-full">
+                    <div class="text-center pb-8">
+                        <h4 class="text-2xl font-semibold text-white">Convenios</h4>
+                        <div class="relative h-0.5 w-36 bg-[#E54E1B] rounded-full mx-auto mt-6">
+                            <div class="absolute top-[-6px] left-1/2 w-4 h-4 bg-[#E54E1B] transform -translate-x-1/3 rotate-45">
+                                <div class="absolute top-1.5 left-[-8px] w-full h-full bg-[#E54E1B]/30"></div>
+                                <div class="absolute top-[-7px] right-[-7px] w-full h-full bg-[#E54E1B]/30"></div>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
-        <div class="flex flex-wrap -mx-4 customer_active justify-center items-center">
-            <div class="w-full lg:w-1/2 px-4">
-                <div class="flex items-center mt-8">
-                    <div class="w-64 lg:w-64 h-80 lg:h-80 overflow-hidden rounded-lg">
-                        <img src="assets/images/customer-1.jpg" alt="customer" class="w-full h-full object-cover object-center">
-                    </div>
+            <div class="flex flex-wrap justify-center items-center gap-4">
+    @foreach($suppliers as $supplier)
+        <div class="w-64 lg:w-64 h-48 lg:h-48 overflow-hidden rounded-lg flex-shrink-0">
+            @if($supplier->photo)
+                <img src="{{ asset($supplier->photo) }}" alt="{{ $supplier->name }}" class="w-full h-full object-cover object-center">
+            @else
+                <div class="flex items-center justify-center h-full text-white">
+                    <p>Sin imagen</p>
                 </div>
-            </div>
-            <div class="w-full px-4 lg:w-1/4">
-                <div class="flex items-center mt-8">
-                    <div class="w-64 lg:w-64 h-80 lg:h-80 overflow-hidden rounded-lg">
-                        <img src="assets/images/customer-2.jpg" alt="customer" class="w-full h-full object-cover object-center">
-                    </div>
-                </div>
-            </div>
+            @endif
         </div>
-    </div>
-</section>
-<!--====== CUSTOMER PART ENDS ======-->
+    @endforeach
+</div>
+
+
+
+        </div>
+    </section>
+    <!--====== CUSTOMER PART ENDS ======-->
 </div>
 @endsection

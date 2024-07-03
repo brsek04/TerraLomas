@@ -16,6 +16,10 @@ class RegionController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
+     function __construct(){
+        $this->middleware('permission:datos');
+    }
     public function index()
     {
         $regions = Region::paginate();

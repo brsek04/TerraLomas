@@ -18,6 +18,7 @@ class CreateSuppliersTable extends Migration
             $table->string('name');
             $table->string('address');
             $table->string('phone');
+            $table->string('photo')->nullable();
             $table->timestamps();
         });
     }

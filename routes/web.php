@@ -20,6 +20,7 @@ use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\AboutController;
 use App\Http\Controllers\OrderController;
+use App\Http\Controllers\RecommendationController;
 
 use App\Http\Controllers\FuncionarioController;
 
@@ -125,17 +126,21 @@ Route::post('/cart/checkout', [CartController::class, 'checkout'])->name('cart.c
 // Shop Routes
 Route::get('/shop/{menuId}', [CartController::class, 'shop'])->name('shop.index');
 Route::get('/shop/{menuId}/filter', [CartController::class, 'filter'])->name('shop.filter');
-
+Route::post('/cart/checkout', [CartController::class, 'checkout'])->name('cart.checkout');
 
 
 Route::get('/order/{order}', [OrderController::class, 'show'])->name('order.show');
-
+Route::put('/order/{order}', [OrderController::class, 'update'])->name('order.update');
 Route::get('/orders', [OrderController::class, 'index'])->name('order.index');
 
-Route::post('/cart/checkout', [CartController::class, 'checkout'])->name('cart.checkout');
 
 
 
 Route::get('/scan', function () {
     return view('scan');
 })->name('scan');
+
+Route::resource('recommendations', RecommendationController::class);
+
+Route::get('/waiter', [OrderController::class, 'waiterView'])->name('order.waiter');
+Route::get('/kitchen', [OrderController::class, 'kitchenView'])->name('order.kitchen');

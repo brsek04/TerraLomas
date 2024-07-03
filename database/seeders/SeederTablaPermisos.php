@@ -26,6 +26,9 @@ class SeederTablaPermisos extends Seeder
             'ver-compañias',
             'ver-menu',
             'ver-ramas',
+            'datos',
+            'cocina',
+            'garzon'
         ];
 
         foreach ($permisos as $permiso) {
