@@ -176,3 +176,11 @@
             .customer_active .slick-dots li.slick-active button {
               background-color: #E54E1B;
               border-color: #E54E1B; }
+
+              .sticky-title-container {
+                position: sticky;
+                top: 0;
+                z-index: 10; /* Ajusta esto si es necesario para manejar el z-index según tu diseño */
+                background-color: #f9fafb; /* Ajusta el color de fondo según tu diseño */
+                padding: 0 1rem; /* Ajusta el relleno según sea necesario */
+            }

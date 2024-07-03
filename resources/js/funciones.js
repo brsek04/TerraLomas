@@ -106,20 +106,3 @@ document.querySelectorAll('[data-modal-hide]').forEach(button => {
     });
 });
 
-document.addEventListener('DOMContentLoaded', function () {
-    console.log('tabs.js loaded');
-    const tabs = document.querySelectorAll('.nav-link');
-
-    tabs.forEach(tab => {
-        tab.addEventListener('click', function (event) {
-            event.preventDefault();
-
-            tabs.forEach(t => t.classList.remove('active'));
-            this.classList.add('active');
-
-            const target = document.querySelector(this.getAttribute('href'));
-            document.querySelectorAll('.tab-content').forEach(content => content.classList.add('hidden'));
-            target.classList.remove('hidden');
-        });
-    });
-});

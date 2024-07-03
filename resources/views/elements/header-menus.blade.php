@@ -53,9 +53,9 @@
         <div class="menu w-full flex-col md:w-3/5 p-2 hidden md:block" id="navbar-cta">
             <ul class="flex flex-col font-medium md:p-0 rounded-lg md:space-x-8 rtl:space-x-reverse md:flex-row md:mt-0 md:border-0 dark:bg-gray-800 md:dark:bg-gray-900 dark:border-gray-700">
                 <li class="px-5 py-1.5"><a href="{{ route('visitante.index') }}" class=" text-gray-50 text-base capitalize font-semibold transition-all ease-in-out duration-500 hover:text-orange-300 page-scroll menu-item">Sucursales</a></li>
-                <li class="px-5 py-1.5"><a href="#recomendaciones" class=" text-gray-50 text-base capitalize font-semibold transition-all ease-in-out duration-500 hover:text-orange-300  menu-item">Recomendaciones</a></li>
-                <li class="px-5 py-1.5"><a href="#" class=" text-gray-50 text-base capitalize font-semibold transition-all ease-in-out duration-500 hover:text-orange-300  menu-item">Menú</a></li>
-                <li class="px-5 py-1.5"><a href="#" class=" text-gray-50 text-base capitalize font-semibold transition-all ease-in-out duration-500 hover:text-orange-300  menu-item">Contáctanos</a></li>
+                <li class="px-5 py-1.5"><a href="#recomendaciones" class=" text-gray-50 text-base capitalize font-semibold transition-all ease-in-out duration-500 hover:text-orange-300 page-scroll  menu-item">Recomendaciones</a></li>
+                <li class="px-5 py-1.5"><a href="#menus" class=" text-gray-50 text-base capitalize font-semibold transition-all ease-in-out duration-500 hover:text-orange-300 page-scroll menu-item">Menú</a></li>
+                <li class="px-5 py-1.5"><a href="#reservas" class=" text-gray-50 text-base capitalize font-semibold transition-all ease-in-out duration-500 hover:text-orange-300 page-scroll  menu-item">Reservas</a></li>
                 <li class="px-5 py-1.5 items-end">    
                     <div class="flex flex-col font-medium md:p-0 rounded-lg md:space-x-8 rtl:space-x-reverse md:flex-row md:mt-0 md:border-0 dark:bg-gray-800 md:dark:bg-gray-900 dark:border-gray-700 ">
                         <ol class="flex justify-start md:justify-end items-center">
