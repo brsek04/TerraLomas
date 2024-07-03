@@ -23,8 +23,6 @@
         </div>
     </section>
     
-
-
 <section id="contenidoMenu" class="content-inner-1 lg:pt-[50px] sm:pt-[70px] pt-[50px] pb-10 relative overflow-hidden bg-gray-50">
         <div class="flex justify-center pb-10">
             <div class="lg:w-1/2">
@@ -40,7 +38,7 @@
             </div>
         </div> <!-- row -->
         <div class="container mx-auto">
-            <div class="w-full flex justify-center">
+            <div class="w-full flex flex-wrap justify-center">
                 <div class="xl:w-10/12 lg:w-9/12 w-full px-[15px]">
                     <div class="flex lg:mb-10 mb-[30px] sm:text-left text-center ">
                         <ul class="flex flex-wrap w-full justify-center style-1">
@@ -82,7 +80,47 @@
                         </ul>
                     </div>
                 </div>
+                <!--filtrobutton-->
+                <div class=" px-4 items-start gap-4">
+                    <div class="flex flex-col mb-4">
+                        <div class="dropdown">
+                            <button id="dropdownTypeButton" data-dropdown-toggle="dropdownType" class="gap-2 text-white bg-orange-500 hover:bg-orange-600 focus:ring-4 focus:outline-none focus:ring-orange-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center dark:bg-orange-600 dark:hover:bg-orange-700 dark:focus:ring-orange-800" type="button">
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-5">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M12 3c2.755 0 5.455.232 8.083.678.533.09.917.556.917 1.096v1.044a2.25 2.25 0 0 1-.659 1.591l-5.432 5.432a2.25 2.25 0 0 0-.659 1.591v2.927a2.25 2.25 0 0 1-1.244 2.013L9.75 21v-6.568a2.25 2.25 0 0 0-.659-1.591L3.659 7.409A2.25 2.25 0 0 1 3 5.818V4.774c0-.54.384-1.006.917-1.096A48.32 48.32 0 0 1 12 3Z" />
+                                  </svg>
+                                  
+                                Filtro
+                                <svg class="w-2.5 h-2.5 ms-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
+                                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 4 4 4-4"/>
+                                </svg>
+                            </button>
+                            <div id="dropdownType" class="z-10 hidden bg-white divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-gray-700">
+                                <ul class="py-2 text-sm text-gray-700 dark:text-gray-200" aria-labelledby="dropdownTypeButton">
+                                    <li class="px-4 py-2 font-bold">Platos</li>
+                                    @foreach($dishTypes as $type)
+                                        <li>
+                                            <a href="{{ route('shop.filter', ['menuId' => $menu->id, 'type' => 'dish', 'typeId' => $type->id]) }}" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">{{ $type->name }}</a>
+                                        </li>
+                                    @endforeach
+                                    <li class="px-4 py-2 font-bold">Bebidas</li>
+                                    @foreach($beverageTypes as $type)
+                                        <li>
+                                            <a href="{{ route('shop.filter', ['menuId' => $menu->id, 'type' => 'beverage', 'typeId' => $type->id]) }}" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">{{ $type->name }}</a>
+                                        </li>
+                                    @endforeach
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="items-start">
+                        <button onclick="limpiarFiltros()" class="text-orange-500 hover:text-white border border-orange-500 hover:bg-orange-500 focus:ring-4 focus:outline-none focus:ring-orange-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:border-orange-500 dark:text-orange-500 dark:hover:text-white dark:hover:bg-orange-500 dark:focus:ring-orange-600">
+                            Limpiar filtros
+                        </button>
+                    </div>
+                </div>
             </div>
+            
+
             <!--menu empieza-->
             <div class="max-w mx-auto px-4 sm:px-6 lg:px-8 w-full pb-8 pt-4 rounded-md shadow-xl">
                 @if(isset($items) && count($items))
@@ -218,64 +256,11 @@
 
 
 
-<div class="w-full max-h-max">
-    <div class="w-full px-2">
-        <div class="py-2">
-                    <div class="grid grid-cols-1 md:grid-cols-3 px-4 items-start gap-4">
-                        <div class="flex flex-col mb-4">
-                            <h5 class="text-l font-semibold mb-2 dark:text-white">Filtrar por tipo de plato</h5>
-                            <div class="dropdown">
-                                <button id="dropdownDishButton" data-dropdown-toggle="dropdownDish" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800" type="button">
-                                    Seleccionar tipo de plato
-                                    <svg class="w-2.5 h-2.5 ms-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
-                                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 4 4 4-4"/>
-                                    </svg>
-                                </button>
-                                <div id="dropdownDish" class="z-10 hidden bg-white divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-gray-700">
-                                    <ul class="py-2 text-sm text-gray-700 dark:text-gray-200" aria-labelledby="dropdownDishButton">
-                                        @foreach($dishTypes as $type)
-                                            <li>
-                                                <a href="{{ route('shop.filter', ['menuId' => $menu->id, 'type' => 'dish', 'typeId' => $type->id]) }}" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">{{ $type->name }}</a>
-                                            </li>
-                                        @endforeach
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-            
-                        <div class="flex flex-col mb-4">
-                            <h5 class="text-l font-semibold mb-2">Filtrar por tipo de bebida</h5>
-                            <div class="dropdown">
-                                <button id="dropdownBeverageButton" data-dropdown-toggle="dropdownBeverage" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800" type="button">
-                                    Seleccionar tipo de bebida
-                                    <svg class="w-2.5 h-2.5 ms-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
-                                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 4 4 4-4"/>
-                                    </svg>
-                                </button>
-                                <div id="dropdownBeverage" class="z-10 hidden bg-white divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-gray-700">
-                                    <ul class="py-2 text-sm text-gray-700 dark:text-gray-200" aria-labelledby="dropdownBeverageButton">
-                                        @foreach($beverageTypes as $type)
-                                            <li>
-                                                <a href="{{ route('shop.filter', ['menuId' => $menu->id, 'type' => 'beverage', 'typeId' => $type->id]) }}" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">{{ $type->name }}</a>
-                                            </li>
-                                        @endforeach
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                        
-                        <div class="items-start">
-                            <h5 class="text-l font-semibold mb-2">Limpiar filtros</h5>
-                            <button onclick="limpiarFiltros()" class="text-blue-700 hover:text-white border border-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:border-orange-500 dark:text-orange-500 dark:hover:text-white dark:hover:bg-blue-600 dark:focus:ring-blue-900">
-                                Limpiar filtros
-                            </button>
-                        </div>
-                    </div>
-        </div>
-    </div>
+
+
     
    @endsection
-<script>
+   <script>
     function limpiarFiltros() {
         window.location.href = "{{ route('shop.index', ['menuId' => $menu->id]) }}";
     }
