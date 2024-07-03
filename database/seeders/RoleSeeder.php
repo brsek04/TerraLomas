@@ -33,7 +33,7 @@ class RoleSeeder extends Seeder
         $adminRole = Role::updateOrCreate(['name' => 'admin'], ['guard_name' => 'web']);
         $cocinaRole = Role::updateOrCreate(['name' => 'cocina'], ['guard_name' => 'web']);
         $garzonRole = Role::updateOrCreate(['name' => 'garzon'], ['guard_name' => 'web']);
-        $funcionarioRole = Role::updateOrCreate(['name' => 'funcionario'], ['guard_name' => 'web']); 
+        
 
         // Asignar todos los permisos al rol de admin
         $adminRole->syncPermissions(Permission::all());
