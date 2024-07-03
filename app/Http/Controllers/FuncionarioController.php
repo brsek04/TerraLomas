@@ -8,9 +8,18 @@ use Illuminate\Http\Request;
 
 class FuncionarioController extends Controller
 {
+    function __construct(){
+        $this->middleware('permission:datos');
+    }
+
     public function index()
     {
-        $funcionarios = User::with('documentos')->role('funcionario')->get();
+        // Obtener usuarios con roles de funcionario, cocina y garzon
+        $funcionarios = User::with('documentos')
+                            ->whereHas('roles', function($query) {
+                                $query->whereIn('name', ['funcionario', 'cocina', 'garzon']);
+                            })
+                            ->get();
         return view('funcionarios.index', compact('funcionarios'));
     }
 

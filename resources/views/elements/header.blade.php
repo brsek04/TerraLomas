@@ -1,9 +1,7 @@
 @auth
-    @if(Auth::user()->hasRole('admin'))
+    
         @include('elements.header-admin')
-    @else
-        @include('elements.header-sucursales')
-    @endif
+  
 @else
    @include('elements.header-sucursales')
 @endauth

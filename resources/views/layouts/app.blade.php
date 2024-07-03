@@ -36,21 +36,15 @@
     </nav>
     <div>
         @auth
-            @if(Auth::user()->hasRole('admin'))
                 @include('elements.sidebar-admin')
-            @endif
         @endauth
     <main>
         @auth
-            @if(Auth::user()->hasRole('admin'))
+           
             <div class="content ml-12 ease-in-out duration-500 pt-20 px-2 md:px-5 pb-4 ">
                 @yield('content')
             </div>
-            @else
-            <div>
-                @yield('content')
-            </div>
-            @endif
+            
         @else
         <div>
             @yield('content')
@@ -58,13 +52,9 @@
         @endauth
     </main>
     @auth
-        @if(Auth::user()->hasRole('admin'))
+        
         <footer></footer>
-        @else
-        <footer>
-            @include('elements.footer')
-        </footer>
-        @endif
+        
     @else
     <footer>
         @include('elements.footer')

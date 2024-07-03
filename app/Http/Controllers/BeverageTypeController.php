@@ -17,8 +17,7 @@ class BeverageTypeController extends Controller
      * @return \Illuminate\Http\Response
      */
     function __construct(){
-        $this->middleware('permission:ver-bebestibles',['only'=>['index']]);
-
+        $this->middleware('permission:ver-plato');
     }
     public function index()
     {

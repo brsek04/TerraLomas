@@ -13,8 +13,7 @@ class DishTypeController extends Controller
 {
 
     function __construct(){
-        $this->middleware('permission:ver-plato',['only'=>['index']]);
-
+        $this->middleware('permission:ver-plato');
     }
     /**
      * Display a listing of the resource.

@@ -10,9 +10,8 @@ use Intervention\Image\Facades\Image;
 
 class BeverageController extends Controller
 {
-    function __construct()
-    {
-        $this->middleware('permission:ver-bebestibles', ['only' => ['index']]);
+    function __construct(){
+        $this->middleware('permission:ver-plato');
     }
 
     public function index()

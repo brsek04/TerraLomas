@@ -11,7 +11,7 @@ use Illuminate\Support\Facades\Storage;
 class DishController extends Controller
 {
     function __construct(){
-        $this->middleware('permission:ver-plato', ['only' => ['index']]);
+        $this->middleware('permission:ver-plato');
     }
 
     /**

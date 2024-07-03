@@ -10,6 +10,7 @@ use App\Models\Horario;
 
 class MesaController extends Controller
 {
+   
     public function index()
     {
         $mesas = Mesa::paginate(10);

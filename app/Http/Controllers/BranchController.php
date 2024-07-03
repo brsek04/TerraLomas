@@ -15,8 +15,7 @@ class BranchController extends Controller
 {
 
     function __construct(){
-        $this->middleware('permission:ver-ramas',['only'=>['index']]);
-
+        $this->middleware('permission:datos');
     }
     /**
      * Display a listing of the resource.

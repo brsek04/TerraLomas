@@ -24,6 +24,9 @@ class AdminController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
+
+     
     public function index()
     {
         $branches = Branch::all();
