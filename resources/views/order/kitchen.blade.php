@@ -2,18 +2,13 @@
 
 @section('content')
 <div class="container mx-auto px-4 py-8">
-    <h1 class="text-3xl font-bold mb-4">Order List</h1>
+    <h1 class="text-3xl font-bold mb-4">Kitchen Order List</h1>
 
-    <form method="GET" action="{{ route('order.index') }}" class="mb-4">
+    <form method="GET" action="{{ route('order.kitchen') }}" class="mb-4">
         <label for="status" class="mr-2">Filter by status:</label>
         <select name="status" id="status" class="border border-gray-300 rounded p-2">
-            <option value="all" {{ $status == 'all' ? 'selected' : '' }}>All</option>
-            <option value="pending" {{ $status == 'pending' ? 'selected' : '' }}>Pending</option>
             <option value="confirmed" {{ $status == 'confirmed' ? 'selected' : '' }}>Confirmed</option>
             <option value="preparing" {{ $status == 'preparing' ? 'selected' : '' }}>Preparing</option>
-            <option value="ready" {{ $status == 'ready' ? 'selected' : '' }}>Ready</option>
-            <option value="delivered" {{ $status == 'delivered' ? 'selected' : '' }}>Delivered</option>
-            <option value="closed" {{ $status == 'closed' ? 'selected' : '' }}>Closed</option>
         </select>
         <button type="submit" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
             Filter
