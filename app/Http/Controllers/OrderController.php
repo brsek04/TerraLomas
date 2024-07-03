@@ -35,20 +35,53 @@ class OrderController extends Controller
         return view('order.show', compact('order'));
     }
 
-    public function index()
+    public function index(Request $request)
     {
-        $orders = Order::with('user')->orderBy('created_at', 'desc')->get();
-
-        return view('order.index', compact('orders'));
+        $status = $request->input('status', 'all'); 
+        if ($status == 'all') {
+            $orders = Order::with('user')->orderBy('created_at', 'desc')->get();
+        } else {
+            $orders = Order::with('user')
+                ->where('status', $status)
+                ->orderBy('created_at', 'desc')
+                ->get();
+        }
+    
+        return view('order.index', compact('orders', 'status'));
     }
 
     public function update(Request $request, Order $order)
-{
-    $order->status = $request->status;
-    $order->save();
+    {
+        $order->status = $request->status;
+        $order->save();
 
-    return redirect()->route('order.show', $order->id)->with('success_msg', 'Estado de la orden actualizado correctamente.');
-}
+        return redirect()->route('order.show', $order->id)->with('success_msg', 'Estado de la orden actualizado correctamente.');
+    }
+
+    // OrderController.php
+
+    public function waiterView(Request $request)
+    {
+        $status = $request->input('status', 'pending'); 
+        $orders = Order::with('user')
+            ->where('status', $status)
+            ->orderBy('created_at', 'desc')
+            ->get();
+
+        return view('order.waiter', compact('orders', 'status'));
+    }
+
+    public function kitchenView(Request $request)
+    {
+        $status = $request->input('status', 'confirmed'); 
+        $orders = Order::with('user')
+            ->whereIn('status', ['confirmed', 'preparing'])
+            ->where('status', $status)
+            ->orderBy('created_at', 'desc')
+            ->get();
+    
+        return view('order.kitchen', compact('orders', 'status'));
+    }
 
 
 }

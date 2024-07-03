@@ -20,6 +20,7 @@ use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\AboutController;
 use App\Http\Controllers\OrderController;
+use App\Http\Controllers\RecommendationController;
 
 use App\Http\Controllers\FuncionarioController;
 
@@ -139,5 +140,7 @@ Route::get('/scan', function () {
     return view('scan');
 })->name('scan');
 
-use App\Http\Controllers\RecommendationController;
 Route::resource('recommendations', RecommendationController::class);
+
+Route::get('/waiter', [OrderController::class, 'waiterView'])->name('order.waiter');
+Route::get('/kitchen', [OrderController::class, 'kitchenView'])->name('order.kitchen');

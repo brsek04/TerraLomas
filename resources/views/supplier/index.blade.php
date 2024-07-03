@@ -39,6 +39,9 @@
                             {{__('Telefono')}}
                         </th>
                         <th scope="col" class="px-6 py-3 text-center">
+                            {{__('Imagen')}}
+                        </th>
+                        <th scope="col" class="px-6 py-3 text-center">
                             {{__('Acciones')}}
                         </th>
                     </tr>
@@ -64,7 +67,16 @@
                         <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white text-center">
                             {{ $supplier->phone }}
                         </th>
-                    
+                        <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white text-center">
+                            @if($supplier->photo)
+                            <img src="{{ asset($supplier->photo) }}" alt="Foto del plato" style="max-width: 100px; max-height: 100px;">
+
+                            @else
+                                Sin imagen
+                            @endif
+                        </th>
+
+
                     <td class="px-6 py-4 text-center">
                     
                         <button type="button" data-modal-target="popup-edit" data-modal-toggle="popup-edit-{{$supplier->id}}" class="text-cyan-700 hover:text-white border border-cyan-600 hover:bg-cyan-700 focus:ring-4 focus:outline-none focus:ring-cyan-300 font-medium rounded-lg text-sm p-2 text-center me-2 mb-2 dark:border-cyan-500 dark:text-cyan-500 dark:hover:text-white dark:hover:bg-cyan-600 dark:focus:ring-cyan-800">
