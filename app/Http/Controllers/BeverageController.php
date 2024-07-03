@@ -6,14 +6,15 @@ use App\Models\Beverage;
 use App\Models\BeverageType;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
-use Intervention\Image\Facades\Image;
+
 
 class BeverageController extends Controller
 {
-    function __construct(){
-        $this->middleware('permission:ver-plato');
-    }
 
+    function __construct(){
+        $this->middleware('permission:ver-bebestibles',['only'=>['index']]);
+
+    }
     public function index()
     {
         $beverages = Beverage::with('beverageType')->oldest()->paginate(5);
@@ -23,6 +24,7 @@ class BeverageController extends Controller
             ->with('i', (request()->input('page', 1) - 1) * $beverages->perPage());
     }
 
+
     public function create()
     {
         $beverage = new Beverage();
@@ -31,45 +33,34 @@ class BeverageController extends Controller
     }
 
     public function store(Request $request)
-    {
-        // Validar la solicitud para asegurarse de que se envió una imagen
-        $request->validate([
-            'name' => 'required|string|max:255',
-            'description' => 'required|string|max:500',
-            'price' => 'required|numeric|min:0',
-            'alcohol' => 'nullable|numeric|min:0|max:100',
-            'rating' => 'required|integer|min:0|max:5',
-            'type_id' => 'required|exists:beverage_types,id',
-            'photo' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
-        ]);
+{
+    // Validar la solicitud para asegurarse de que se envió una imagen
+    $request->validate([
+        'photo' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048', // ajusta las reglas según tus necesidades
+    ]);
 
-        $beverage = new Beverage();
-        $beverage->name = $request->name;
-        $beverage->description = $request->description;
-        $beverage->price = $request->price;
-        $beverage->alcohol = $request->alcohol;
-        $beverage->rating = $request->rating;
-        $beverage->type_id = $request->type_id;
+    // Obtener la imagen del formulario
+    $image = $request->file('photo');
 
-        if ($request->hasFile('photo')) {
-            $image = $request->file('photo');
-            $fileName = time().'.'.$image->getClientOriginalExtension();
-            
-            // Procesar la imagen con Intervention Image
-            $img = Image::make($image->getRealPath());
-            $img->resize(800, null, function ($constraint) {
-                $constraint->aspectRatio();
-            })->save(public_path('images').'/'.$fileName, 75); // Aquí 75 es el nivel de calidad, ajusta según sea necesario
-            
-            $beverage->photo = 'images/'.$fileName;
-        }
+    // Generar un nombre único para la imagen
+    $imageName = time().'.'.$image->extension();
 
-        // Guardar el objeto Beverage en la base de datos
-        $beverage->save();
+    // Guardar la imagen en la carpeta public/images
+    $image->move(public_path('images'), $imageName);
 
-        return redirect()->route('beverages.index')
-            ->with('success_add', 'Bebida creada exitosamente.');
-    }
+    // Crear el nuevo plato con la ruta de la imagen
+    $beverage = Beverage::create(array_merge($request->all(), ['photo' => 'images/'.$imageName]));
+
+    // Obtener todos los bebibles ordenados por id de manera descendente
+    $beverages = Beverage::with('beverageType')->latest()->paginate(5);
+
+    // Redireccionar a la vista de index con un mensaje de éxito
+    return redirect()->route('beverages.index', compact('beverages'))
+        ->with('success_add', 'Bebida creada exitosamente.');
+}
+
+
+    // Other methods (show, edit, update, destroy) remain unchanged...
 
     public function edit($id)
     {
@@ -86,56 +77,56 @@ class BeverageController extends Controller
             'price' => 'required|numeric|min:0',
             'alcohol' => 'nullable|numeric|min:0',
             'photo' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
-            'rating' => 'nullable|numeric|min:0|max:5',
-            'type_id' => 'required|exists:beverage_types,id',
+            'rating' => 'nullable|numeric|min:0',
+            'type_id' => 'required|exists:beverage_types,id'
         ]);
 
-        // Check if a new photo has been uploaded
-        if ($request->hasFile('photo')) {
+         // Check if a new photo has been uploaded
+         if ($request->hasFile('photo')) {
             // Delete the old photo if it exists
             if ($beverage->photo && Storage::disk('public')->exists($beverage->photo)) {
                 Storage::disk('public')->delete($beverage->photo);
             }
-
+    
             // Store the new photo
             $image = $request->file('photo');
-            $fileName = time().'.'.$image->getClientOriginalExtension();
-            
-            // Procesar la imagen con Intervention Image
-            $img = Image::make($image->getRealPath());
-            $img->resize(800, null, function ($constraint) {
-                $constraint->aspectRatio();
-            })->save(public_path('images').'/'.$fileName, 75); // Aquí 75 es el nivel de calidad, ajusta según sea necesario
-            
-            $beverage->photo = 'images/'.$fileName;
+            $imageName = time().'.'.$image->extension();
+            $image->move(public_path('images'), $imageName);
+    
+            // Update the photo path in the beverage
+            $beverage->photo = 'images/'.$imageName;
         }
-
+    
         // Update the rest of the beverage details
         $beverage->update($request->except('photo'));
-
+    
+        // Save the updated beverage
+        $beverage->save();
+    
         return redirect()->route('beverages.index')
-            ->with('success_edit', 'Bebida actualizada exitosamente.');
+            ->with('success_edit', 'beverage updated successfully');
     }
 
     public function destroy($id)
     {
         $beverage = Beverage::find($id);
-
+    
         // Verify if the beverage exists
         if ($beverage) {
             // Delete the image if it exists
             if ($beverage->photo && file_exists(public_path($beverage->photo))) {
                 unlink(public_path($beverage->photo));
             }
-
+    
             // Delete the beverage from the database
             $beverage->delete();
-
+    
             return redirect()->route('beverages.index')
-                ->with('success_del', 'Bebida eliminada exitosamente.');
+                ->with('success_del', 'beverage deleted successfully');
         } else {
             return redirect()->route('beverages.index')
-                ->with('error', 'Bebida no encontrada.');
+                ->with('error', 'beverage not found');
         }
     }
+    
 }
