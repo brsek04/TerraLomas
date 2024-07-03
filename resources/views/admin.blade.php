@@ -3,10 +3,12 @@
 @section('content')
 
 <div class="container mx-auto px-4 py-8">
-    
+
+    <!-- Título del Panel -->
+    <h2 class="text-3xl font-semibold mb-6 text-center">Panel de Administración</h2>
 
     <!-- Cuadrícula de Bloques -->
-    <div class="grid grid-cols-2 gap-6">
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 gap-6">
 
         <!-- Bloque 1: Datos del Último Mes -->
         <div class="bg-white rounded-lg shadow-md p-4">
