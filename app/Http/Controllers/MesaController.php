@@ -1,63 +1,61 @@
 <?php
 
-
 namespace App\Http\Controllers;
 
 use App\Models\Mesa;
-use App\Models\Horario;
+use App\Models\Branch;
 use Illuminate\Http\Request;
-use App\Models\Branch; 
-use Carbon\Carbon; 
+use Carbon\Carbon;
+use App\Models\Horario;
 
 class MesaController extends Controller
 {
     public function index()
     {
-        $mesas = Mesa::all();
+        $mesas = Mesa::paginate(10);
         return view('mesas.index', compact('mesas'));
     }
 
     public function create()
     {
-        $branches = Branch::all(); // Obtener todas las sucursales desde la base de datos
+        $branches = Branch::all();
         return view('mesas.create', compact('branches'));
     }
 
     public function store(Request $request)
-{
-    $request->validate([
-        'numero' => 'required|string|unique:mesas',
-        'capacidad' => 'required|integer',
-        'branch_id' => 'required|exists:branches,id',
-    ]);
+    {
+        $request->validate([
+            'numero' => 'required|string|unique:mesas',
+            'capacidad' => 'required|integer',
+            'branch_id' => 'required|exists:branches,id',
+        ]);
 
-    $mesa = Mesa::create($request->all());
+        $mesa = Mesa::create($request->all());
 
-    // Generar horarios para los próximos 7 días
-    $horas = ['13:00:00', '15:00:00', '17:00:00', '19:00:00'];
-    for ($i = 0; $i < 7; $i++) {
-        $fecha = Carbon::now()->addDays($i)->toDateString();
-        foreach ($horas as $hora) {
-            Horario::create([
-                'mesa_id' => $mesa->id,
-                'fecha' => $fecha,
-                'hora' => $hora,
-            ]);
+        // Generar horarios para los próximos 7 días
+        $horas = ['13:00:00', '15:00:00', '17:00:00', '19:00:00'];
+        for ($i = 0; $i < 7; $i++) {
+            $fecha = Carbon::now()->addDays($i)->toDateString();
+            foreach ($horas as $hora) {
+                Horario::create([
+                    'mesa_id' => $mesa->id,
+                    'fecha' => $fecha,
+                    'hora' => $hora,
+                ]);
+            }
         }
+
+        return redirect()->route('mesas.index')->with('success', 'Mesa creada correctamente.');
     }
-
-    return redirect()->route('mesas.index')->with('success', 'Mesa creada correctamente.');
-}
-
 
     public function edit(Mesa $mesa)
     {
-        return view('mesas.edit', compact('mesa'));
+        $branches = Branch::all();
+        return view('mesas.edit', compact('mesa', 'branches'));
     }
 
     public function update(Request $request, Mesa $mesa)
     {
-        // Valida y actualiza la mesa existente
         $request->validate([
             'numero' => 'required|string|unique:mesas,numero,'.$mesa->id,
             'capacidad' => 'required|integer',
@@ -76,5 +74,3 @@ class MesaController extends Controller
         return redirect()->route('mesas.index')->with('success', 'Mesa eliminada correctamente.');
     }
 }
-
-
