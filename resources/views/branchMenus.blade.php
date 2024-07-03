@@ -314,7 +314,7 @@
                             </div>
                         @endforeach
                     </div>
-                    <p class="mt-6 text-gray-600">Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr. <br></p>
+                    <p class="mt-6 text-gray-600">¡Reserva tu mesa hoy mismo en nuestro restaurante! Disfruta de una experiencia gastronómica excepcional con nosotros. Visítanos o reserva en línea para asegurar tu lugar. Te esperamos para una velada inolvidable. <br></p>
                     <ul class="flex flex-wrap pt-8">
                         <li class="inline-block mt-2">
                             <a href="https://www.facebook.com/terralomas" >
