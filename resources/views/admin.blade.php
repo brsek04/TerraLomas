@@ -2,256 +2,122 @@
 
 @section('content')
 
-<section class="section">
-    <div class="section-header dark:bg-gray-800">
-        <h3 class="font-bold dark:text-gray-50">¡Bienvenido! {{ \Illuminate\Support\Facades\Auth::user()->name }}</h3>
-    </div>
-    <div class="section-body">
-        <div class="row">
-            <div class="col-lg-12">
-                <div class="card">
-                    <div class="dark:bg-gray-800 p-10 lg-rounded-sm">
-                        <h3 class="dark:text-gray-50">Este es tu panel de administración</h3>
-                    </div>
+<div class="container mx-auto px-4 py-8">
+    
+
+    <!-- Cuadrícula de Bloques -->
+    <div class="grid grid-cols-2 gap-6">
+
+        <!-- Bloque 1: Datos del Último Mes -->
+        <div class="bg-white rounded-lg shadow-md p-4">
+            <h3 class="text-lg font-semibold mb-2">Datos del Último Mes</h3>
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-2">
+                <div>
+                    <p class="text-gray-600">Total de órdenes:</p>
+                    <p class="text-lg font-bold">{{ $totalOrdersLastMonth }}</p>
                 </div>
+                <div>
+                    <p class="text-gray-600">Ganancias totales:</p>
+                    <p class="text-lg font-bold">${{ number_format($totalEarnings, 2) }}</p>
+                </div>
+            </div>
+            <!-- Top Usuarios por Órdenes -->
+            <div class="mt-4">
+                <h4 class="text-lg font-semibold mb-2">Top 5 Usuarios por Órdenes</h4>
+                <ul>
+                    @foreach ($topUsersLastMonth as $user)
+                        <li class="flex justify-between py-1">
+                            <span>{{ $user->user->name }}</span>
+                            <span class="text-gray-600">{{ $user->order_count }} órdenes</span>
+                        </li>
+                    @endforeach
+                </ul>
             </div>
         </div>
 
-        <!-- Sección para los datos del último mes -->
-        <div class="row mt-4">
-            <div class="col-lg-12">
-                <div class="card">
-                    <div class="card-body">
-                        <h4 class="card-title">Datos del Último Mes</h4>
-                        <p>Total de órdenes: {{ $totalOrdersLastMonth }}</p>
-
-                        <h5>Top 5 Usuarios</h5>
-                        <ul>
-                            @foreach ($topUsersLastMonth as $user)
-                                <li>{{ $user->user->name }} - {{ $user->order_count }} órdenes</li>
-                            @endforeach
-                        </ul>
-
-                        <h5>Top 3 Platos Más Vendidos</h5>
-                        <ul>
-                            @foreach ($topDishesLastMonth as $dish)
-                                <li>{{ $dish->name }} - {{ $dish->total }} unidades</li>
-                            @endforeach
-                        </ul>
-
-                        <h5>Top 3 Bebidas Más Vendidas</h5>
-                        <ul>
-                            @foreach ($topBeveragesLastMonth as $beverage)
-                                <li>{{ $beverage->name }} - {{ $beverage->total }} unidades</li>
-                            @endforeach
-                        </ul>
-                        <ul>
-                        Ganancias por Platos: ${{ number_format($totalDishEarnings, 2) }}
-                        </ul>
-                        <ul>
-                        Ganancias por Bebidas: ${{ number_format($totalBeverageEarnings, 2) }}
-                        </ul>
-                        <ul>
-                        Gnancias totales: ${{ number_format($totalEarnings, 2) }}
-                        </ul>
-
-                    </div>
+        <!-- Bloque 2: Estadísticas Detalladas -->
+        <div class="bg-white rounded-lg shadow-md p-4">
+            <h3 class="text-lg font-semibold mb-2">Estadísticas Detalladas</h3>
+            <!-- Top Platos Más Vendidos -->
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-2">
+                <div>
+                    <h4 class="text-lg font-semibold mb-2">Top 3 Platos Más Vendidos</h4>
+                    <ul>
+                        @foreach ($topDishesLastMonth as $dish)
+                            <li class="flex justify-between py-1">
+                                <span>{{ $dish->name }}</span>
+                                <span class="text-gray-600">{{ $dish->total }} unidades</span>
+                            </li>
+                        @endforeach
+                    </ul>
                 </div>
+                <!-- Top Bebidas Más Vendidas -->
+                <div>
+                    <h4 class="text-lg font-semibold mb-2">Top 3 Bebidas Más Vendidas</h4>
+                    <ul>
+                        @foreach ($topBeveragesLastMonth as $beverage)
+                            <li class="flex justify-between py-1">
+                                <span>{{ $beverage->name }}</span>
+                                <span class="text-gray-600">{{ $beverage->total }} unidades</span>
+                            </li>
+                        @endforeach
+                    </ul>
+                </div>
+            </div>
+            <!-- Ganancias Detalladas -->
+            <div class="mt-4">
+                <h4 class="text-lg font-semibold mb-2">Ganancias Detalladas</h4>
+                <ul>
+                    <li class="flex justify-between py-1">
+                        <span>Platos:</span>
+                        <span class="text-gray-600">${{ number_format($totalDishEarnings, 2) }}</span>
+                    </li>
+                    <li class="flex justify-between py-1">
+                        <span>Bebidas:</span>
+                        <span class="text-gray-600">${{ number_format($totalBeverageEarnings, 2) }}</span>
+                    </li>
+                </ul>
             </div>
         </div>
 
-        <div class="row mt-4 justify-content-center ">
-            <div class="d-flex justify-content-center flex-wrap flex">
+        <!-- Bloque 3: Estadísticas de Usuarios por Rol -->
+        <div class="bg-white rounded-lg shadow-md p-4">
+            <h3 class="text-lg font-semibold mb-2">Estadísticas de Usuarios por Rol</h3>
+            <div class="space-y-2">
                 @foreach ($userCountsByRole as $role => $count)
-                    <div class="card mx-2 my-2" style="width: 12rem;">
-                        <div class="card-body text-center">
-                            <h5 class="card-title">{{ ucfirst($role) }}</h5>
-                            <p class="card-text">{{ $count }}</p>
-                        </div>
+                    <div class="bg-gray-100 rounded-lg shadow-md p-2">
+                        <h4 class="text-lg font-semibold mb-1">{{ ucfirst($role) }}</h4>
+                        <p class="text-lg font-bold">{{ $count }}</p>
                     </div>
                 @endforeach
             </div>
         </div>
-        <div class="row mt-4 flex">
-            <div class="col-md-6">
-                <div style="max-width: 200px;">
-                    <canvas id="branchesChart"></canvas>
-                </div>
-            </div>
-           
-           
-            <div class="col-md-6">
-                <div style="max-width: 400px;">
+
+        <!-- Bloque 4: Gráficos de Estadísticas -->
+        <div class="bg-white rounded-lg shadow-md p-4">
+            <h3 class="text-lg font-semibold mb-2">Gráficos de Estadísticas</h3>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div>
+                    <h4 class="text-lg font-semibold mb-2">Todos los Platos Vendidos</h4>
                     <canvas id="allDishesChart"></canvas>
                 </div>
-            </div>
-            <div class="col-md-6">
-                <div style="max-width: 400px;">
+                <div>
+                    <h4 class="text-lg font-semibold mb-2">Todas las Bebidas Vendidas</h4>
                     <canvas id="allBeveragesChart"></canvas>
                 </div>
             </div>
-
-</div>
-
-                <div class="flex">
-            <div class="col-md-6">
-                <div style="max-width: 200px;">
-                    <canvas id="beveragesByTypeChart"></canvas>
-                </div>
-            </div>
-            
-            <div class="col-md-6">
-                <div style="max-width: 200px;">
-                    <canvas id="dishesByTypeChart"></canvas>
-                </div>
-            </div>
-</div>
         </div>
-    
-</section>
+
+    </div>
+
+</div>
 
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels"></script>
 <script>
     document.addEventListener('DOMContentLoaded', function () {
-        console.log('Datos cargados correctamente');
-
-        var branchCount = {{ $branchCount }};
-        var dishCount = {{ $dishCount }};
-        var beverageCount = {{ $beverageCount }};
-        var totalUsers = {{ $totalUsers }};
-        var totalDishes = {{ $totalDishes }};
-
-        var dishesByType = {!! json_encode($dishesByType->pluck('dishes_count', 'name')) !!};
-        var beveragesByType = {!! json_encode($beveragesByType->pluck('beverages_count', 'name')) !!};
         var allDishesData = {!! json_encode($allDishesData) !!};
         var allBeveragesData = {!! json_encode($allBeveragesData) !!};
-
-        console.log('Dishes By Type:', dishesByType);
-        console.log('Beverages By Type:', beveragesByType);
-        console.log('All Dishes:', allDishesData);
-        console.log('All Beverages:', allBeveragesData);
-
-        // Gráfico de Branches
-        new Chart(document.getElementById('branchesChart').getContext('2d'), {
-            type: 'doughnut',
-            data: {
-                labels: ['Branches', 'Total Users'],
-                datasets: [{
-                    label: 'Branches vs Total Users',
-                    data: [branchCount, totalUsers],
-                    backgroundColor: ['#36a2eb', '#ff6384'],
-                }]
-            },
-            options: {
-                plugins: {
-                    tooltip: {
-                        callbacks: {
-                            label: function(tooltipItem) {
-                                var label = tooltipItem.label || '';
-
-                                if (label)
-
-
-<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels"></script>
-<script>
-    document.addEventListener('DOMContentLoaded', function () {
-        console.log('Datos cargados correctamente');
-
-        var branchCount = {{ $branchCount }};
-        var dishCount = {{ $dishCount }};
-        var beverageCount = {{ $beverageCount }};
-        var totalUsers = {{ $totalUsers }};
-        var totalDishes = {{ $totalDishes }};
-
-        var dishesByType = {!! json_encode($dishesByType->pluck('dishes_count', 'name')) !!};
-        var beveragesByType = {!! json_encode($beveragesByType->pluck('beverages_count', 'name')) !!};
-        var allDishesData = {!! json_encode($allDishesData) !!};
-        var allBeveragesData = {!! json_encode($allBeveragesData) !!};
-
-        console.log('Dishes By Type:', dishesByType);
-        console.log('Beverages By Type:', beveragesByType);
-        console.log('All Dishes:', allDishesData);
-        console.log('All Beverages:', allBeveragesData);
-
-        // Gráfico de Branches
-        new Chart(document.getElementById('branchesChart').getContext('2d'), {
-            type: 'doughnut',
-            data: {
-                labels: ['Branches', 'Total Users'],
-                datasets: [{
-                    label: 'Branches vs Total Users',
-                    data: [branchCount, totalUsers],
-                    backgroundColor: ['#36a2eb', '#ff6384'],
-                }]
-            },
-            options: {
-                plugins: {
-                    tooltip: {
-                        callbacks: {
-                            label: function(tooltipItem) {
-                                var label = tooltipItem.label || '';
-
-                                if (label) {
-                                    label += ': ';
-                                }
-                                label += tooltipItem.raw.toFixed(0);
-                                return label;
-                            }
-                        }
-                    },
-                    datalabels: {
-                        color: '#fff',
-                        anchor: 'end',
-                        align: 'start',
-                        offset: 10, // Distancia del texto desde el borde de la sección
-                        formatter: function(value, context) {
-                            return value.toFixed(0);
-                        }
-                    }
-                }
-            }
-        });
-
-        // Gráfico de Tipos de Platos
-        new Chart(document.getElementById('dishesByTypeChart').getContext('2d'), {
-            type: 'pie',
-            data: {
-                labels: Object.keys(dishesByType),
-                datasets: [{
-                    label: 'Tipos de Platos',
-                    data: Object.values(dishesByType),
-                    backgroundColor: ['#ff9f40', '#ffcd56', '#4bc0c0', '#36a2eb'],
-                }]
-            },
-            options: {
-                plugins: {
-                    tooltip: {
-                        callbacks: {
-                            label: function(tooltipItem) {
-                                var label = tooltipItem.label || '';
-
-                                if (label) {
-                                    label += ': ';
-                                }
-                                label += tooltipItem.raw.toFixed(0);
-                                return label;
-                            }
-                        }
-                    },
-                    datalabels: {
-                        color: '#fff',
-                        anchor: 'end',
-                        align: 'start',
-                        offset: 10, // Distancia del texto desde el borde de la sección
-                        formatter: function(value, context) {
-                            return value.toFixed(0);
-                        }
-                    }
-                }
-            }
-        });
 
         // Gráfico de Todos los Platos vendidos
         new Chart(document.getElementById('allDishesChart').getContext('2d'), {
@@ -271,7 +137,6 @@
                         callbacks: {
                             label: function(tooltipItem) {
                                 var label = tooltipItem.label || '';
-
                                 if (label) {
                                     label += ': ';
                                 }
@@ -284,46 +149,7 @@
                         color: '#fff',
                         anchor: 'end',
                         align: 'start',
-                        offset: 10, // Distancia del texto desde el borde de la sección
-                        formatter: function(value, context) {
-                            return value.toFixed(0);
-                        }
-                    }
-                }
-            }
-        });
-
-        // Gráfico de Tipos de Bebidas
-        new Chart(document.getElementById('beveragesByTypeChart').getContext('2d'), {
-            type: 'pie',
-            data: {
-                labels: Object.keys(beveragesByType),
-                datasets: [{
-                    label: 'Tipos de Bebidas',
-                    data: Object.values(beveragesByType),
-                    backgroundColor: ['#ff9f40', '#ffcd56', '#4bc0c0', '#36a2eb'],
-                }]
-            },
-            options: {
-                plugins: {
-                    tooltip: {
-                        callbacks: {
-                            label: function(tooltipItem) {
-                                var label = tooltipItem.label || '';
-
-                                if (label) {
-                                    label += ': ';
-                                }
-                                label += tooltipItem.raw.toFixed(0);
-                                return label;
-                            }
-                        }
-                    },
-                    datalabels: {
-                        color: '#fff',
-                        anchor: 'end',
-                        align: 'start',
-                        offset: 10, // Distancia del texto desde el borde de la sección
+                        offset: 10,
                         formatter: function(value, context) {
                             return value.toFixed(0);
                         }
@@ -345,13 +171,11 @@
                 }]
             },
             options: {
-                indexAxis: 'y',
                 plugins: {
                     tooltip: {
                         callbacks: {
                             label: function(tooltipItem) {
                                 var label = tooltipItem.label || '';
-
                                 if (label) {
                                     label += ': ';
                                 }
@@ -364,7 +188,7 @@
                         color: '#fff',
                         anchor: 'end',
                         align: 'start',
-                        offset: 10, // Distancia del texto desde el borde de la sección
+                        offset: 10,
                         formatter: function(value, context) {
                             return value.toFixed(0);
                         }
@@ -372,7 +196,7 @@
                 }
             }
         });
-
     });
 </script>
+
 @endsection

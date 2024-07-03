@@ -227,6 +227,19 @@
            </div>
        </div>
 
+       <div class="hover:ml-4 w-full text-white hover:text-purple-500 dark:hover:text-blue-500 bg-[#1E293B] p-2 pl-8 rounded-full transform ease-in-out duration-300 flex flex-row items-center space-x-3">
+         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-4 h-4">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M3 8.25V7.125C3 5.845 4.014 4.875 5.25 4.875h13.5c1.236 0 2.25.97 2.25 2.25V8.25M12 13.5a3 3 0 1 1 0-6 3 3 0 0 1 0 6Zm6.75-3.75a.75.75 0 0 1 .75.75v6.75a2.25 2.25 0 0 1-2.25 2.25H6.75a2.25 2.25 0 0 1-2.25-2.25V10.5a.75.75 0 0 1 .75-.75h13.5Z" />
+         </svg>
+         <div>
+            <a href="/scan">
+                  Escaner QR
+            </a>
+         </div>
+      </div>
+
+
+
 
        <div class = "hover:ml-4 w-full text-white hover:text-purple-500 dark:hover:text-blue-500 bg-[#1E293B] p-2 pl-8 rounded-full transform ease-in-out duration-300 flex flex-row items-center space-x-3">
          <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" viewBox="0 -960 960 960" width="24px" fill="#FFFFFF">
