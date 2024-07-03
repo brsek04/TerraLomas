@@ -42,18 +42,28 @@ class SupplierController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
-    {
-        request()->validate(Supplier::$rules);
+{
+    request()->validate(Supplier::$rules);
 
-        $supplier = Supplier::create($request->all());
-
-        return redirect()->route('suppliers.index')
-            ->with('success', 'Supplier created successfully.');
+    if ($request->hasFile('photo')) {
+        $image = $request->file('photo');
+        $imageName = time() . '.' . $image->extension();
+        $image->move(public_path('images'), $imageName);
+        $photoPath = 'images/' . $imageName;
+    } else {
+        $photoPath = null;
     }
+
+    // Crear el nuevo supplier
+    $supplier = Supplier::create(array_merge($request->all(), ['photo' => $photoPath]));
+
+    return redirect()->route('suppliers.index')
+        ->with('success', 'Supplier created successfully.');
+}
 
     /**
      * Display the specified resource.
-     *
+     *QA
      * @param  int $id
      * @return \Illuminate\Http\Response
      */
@@ -84,14 +94,28 @@ class SupplierController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, Supplier $supplier)
-    {
-        request()->validate(Supplier::$rules);
+{
+    request()->validate(Supplier::$rules);
 
-        $supplier->update($request->all());
+    if ($request->hasFile('photo')) {
+        // Eliminar la foto antigua si existe
+        if ($supplier->photo && file_exists(public_path($supplier->photo))) {
+            unlink(public_path($supplier->photo));
+        }
 
-        return redirect()->route('suppliers.index')
-            ->with('success', 'Supplier updated successfully');
+        // Guardar la nueva foto
+        $image = $request->file('photo');
+        $imageName = time() . '.' . $image->extension();
+        $image->move(public_path('images'), $imageName);
+        $supplier->photo = 'images/' . $imageName;
     }
+
+    // Actualizar el resto de los detalles del supplier
+    $supplier->update($request->except('photo'));
+
+    return redirect()->route('suppliers.index')
+        ->with('success_edit', 'Supplier updated successfully.');
+}
 
     /**
      * @param int $id
@@ -100,9 +124,23 @@ class SupplierController extends Controller
      */
     public function destroy($id)
     {
-        $supplier = Supplier::find($id)->delete();
+        $supplier = Supplier::find($id);
 
-        return redirect()->route('suppliers.index')
-            ->with('success', 'Supplier deleted successfully');
+        // Verificar si el plato existe
+        if ($supplier) {
+            // Eliminar la imagen si existe
+            if ($supplier->photo && file_exists(public_path($supplier->photo))) {
+                unlink(public_path($supplier->photo));
+            }
+
+            // Eliminar el plato de la base de datos
+            $supplier->delete();
+
+            return redirect()->route('suppliers.index')
+                ->with('success_del', 'supplier deleted successfully');
+        } else {
+            return redirect()->route('suppliers.index')
+                ->with('error', 'supplier not found');
+        }
     }
 }

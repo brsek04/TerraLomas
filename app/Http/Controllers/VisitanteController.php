@@ -6,6 +6,10 @@ use App\Models\Branch;
 use App\Models\Menu;
 use Illuminate\Http\Request;
 
+use App\Models\Supplier;
+
+
+
 class VisitanteController extends Controller
 {
     /**
@@ -16,7 +20,8 @@ class VisitanteController extends Controller
     public function index()
     {
         $branches = Branch::all();
-        return view('visitante', compact('branches'));
+        $suppliers = Supplier::all();
+        return view('visitante', compact('branches', 'suppliers'));
     }
 
     /**

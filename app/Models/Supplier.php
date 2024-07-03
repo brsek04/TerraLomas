@@ -24,6 +24,7 @@ class Supplier extends Model
 		'name' => 'required',
 		'address' => 'required',
 		'phone' => 'required',
+    'photo' => 'required',
     ];
 
     protected $perPage = 20;
@@ -33,7 +34,7 @@ class Supplier extends Model
      *
      * @var array
      */
-    protected $fillable = ['name','address','phone'];
+    protected $fillable = ['name','address','phone','photo'];
 
 
 

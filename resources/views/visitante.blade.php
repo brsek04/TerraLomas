@@ -131,40 +131,40 @@
         </div> <!-- container -->
     </section>
 <!--====== ABOUT END ======-->
-<!--====== CONVENIO PART START ======-->
-<section id="convenios" class="convenios_area py-20">
-    <div class="container mx-auto ">
-        <div class="flex justify-center">
-            <div class="w-full ">
-                <div class="text-center pb-8">
-                    <h4 class="text-2xl font-semibold text-white">Convenios</h4>
-                    <div class="relative h-0.5 w-36 bg-[#E54E1B] rounded-full mx-auto mt-6">
-                        <div class="absolute top-[-6px] left-1/2 w-4 h-4 bg-[#E54E1B] transform -translate-x-1/3 rotate-45">
-                            <div class="absolute top-1.5 left-[-8px] w-full h-full bg-[#E54E1B]/30"></div>
-                            <div class="absolute top-[-7px] right-[-7px] w-full h-full bg-[#E54E1B]/30"></div>
+ <!--====== CONVENIO PART START ======-->
+ <section id="convenios" class="convenios_area py-20">
+        <div class="container mx-auto">
+            <div class="flex justify-center">
+                <div class="w-full">
+                    <div class="text-center pb-8">
+                        <h4 class="text-2xl font-semibold text-white">Convenios</h4>
+                        <div class="relative h-0.5 w-36 bg-[#E54E1B] rounded-full mx-auto mt-6">
+                            <div class="absolute top-[-6px] left-1/2 w-4 h-4 bg-[#E54E1B] transform -translate-x-1/3 rotate-45">
+                                <div class="absolute top-1.5 left-[-8px] w-full h-full bg-[#E54E1B]/30"></div>
+                                <div class="absolute top-[-7px] right-[-7px] w-full h-full bg-[#E54E1B]/30"></div>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
-        <div class="flex flex-wrap -mx-4 customer_active justify-center items-center">
-            <div class="w-full px-4 ">
-                <div class="flex items-center mt-8">
-                    <div class="w-64 lg:w-64 h-80 lg:h-80 overflow-hidden rounded-lg">
-                        <img src="/images/1718767546.png" alt="convenios" class="w-full h-full object-cover object-center">
-                    </div>
+            <div class="flex flex-wrap justify-center items-center gap-4">
+    @foreach($suppliers as $supplier)
+        <div class="w-64 lg:w-64 h-48 lg:h-48 overflow-hidden rounded-lg flex-shrink-0">
+            @if($supplier->photo)
+                <img src="{{ asset($supplier->photo) }}" alt="{{ $supplier->name }}" class="w-full h-full object-cover object-center">
+            @else
+                <div class="flex items-center justify-center h-full text-white">
+                    <p>Sin imagen</p>
                 </div>
-            </div>
-            <div class="w-full px-4 ">
-                <div class="flex items-center mt-8">
-                    <div class="w-64 lg:w-64 h-80 lg:h-80 overflow-hidden rounded-lg">
-                        <img src="/images/1717898107.jpg" alt="convenios" class="w-full h-full object-cover object-center">
-                    </div>
-                </div>
-            </div>
+            @endif
         </div>
-    </div>
-</section>
-<!--====== CUSTOMER PART ENDS ======-->
+    @endforeach
+</div>
+
+
+
+        </div>
+    </section>
+    <!--====== CUSTOMER PART ENDS ======-->
 </div>
 @endsection
