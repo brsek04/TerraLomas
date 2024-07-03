@@ -14,13 +14,12 @@
     <link href="{{ asset('resources/css/iziToast.min.css') }}" rel="stylesheet">
     <link href="{{ asset('resources/css/sweetalert.css') }}" rel="stylesheet">
     <link href="{{ asset('resources/css/select2.min.css') }}" rel="stylesheet">
-    <link href="{{ mix('css/app.css') }}" rel="stylesheet">
 
     <!-- Template CSS -->
     <link rel="stylesheet" href="{{ asset('web/css/style.css') }}">
     <link rel="stylesheet" href="{{ asset('web/css/components.css') }}">
-    <link rel="stylesheet" href="assets/css/animate.css">
-    <link rel="stylesheet" href="assets/css/slick.css">
+    <link rel="stylesheet" href="{{asset('assets/css/animate.css')}}">
+    <link rel="stylesheet" href="{{asset('assets/css/slick.css')}}">
     <link rel="stylesheet" href="{{ mix('css/app.css') }}">
     <!-- Custom CSS - Agrega tus estilos personalizados aquí -->
 
@@ -77,16 +76,16 @@
    <script src="https://cdn.jsdelivr.net/npm/alpinejs@3.4.2/dist/cdn.min.js" defer></script>
    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
    <script src="{{ mix('js/app.js') }}"></script>
-   <script src="resources/js/vendor/jquery-3.5.1.min.js"></script>
-   <script src="resources/js/vendor/modernizr-3.7.1.min.js"></script>
-   <script src="assets/js/vendor/jquery-3.5.1.min.js"></script>
-   <script src="assets/js/vendor/modernizr-3.7.1.min.js"></script>
-   <script src="assets/js/popper.min.js"></script>
-   <script src="assets/js/bootstrap.min.js"></script>
-   <script src="assets/js/slick.min.js"></script>
-   <script src="assets/js/jquery.easing.min.js"></script>
-   <script src="assets/js/scrolling-nav.js"></script>
-   <script src="assets/js/wow.min.js"></script>
-   <script src="assets/js/main.js"></script>
+   <script src="{{ asset('resources/js/vendor/jquery-3.5.1.min.js') }}"></script>
+   <script src="{{ asset('resources/js/vendor/modernizr-3.7.1.min.js') }}"></script>
+   <script src="{{ asset('assets/js/vendor/jquery-3.5.1.min.js') }}"></script>
+   <script src="{{ asset('assets/js/vendor/modernizr-3.7.1.min.js') }}"></script>
+   <script src="{{ asset('assets/js/popper.min.js') }}"></script>
+   <script src="{{ asset('assets/js/bootstrap.min.js') }}"></script>
+   <script src="{{ asset('assets/js/slick.min.js') }}"></script>
+   <script src="{{ asset('assets/js/jquery.easing.min.js') }}"></script>
+   <script src="{{ asset('assets/js/scrolling-nav.js') }}"></script>
+   <script src="{{ asset('assets/js/wow.min.js') }}"></script>
+   <script src="{{ asset('assets/js/main.js') }}"></script>
 </body>
 </html>

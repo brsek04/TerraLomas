@@ -78,16 +78,16 @@
    <script src="https://cdn.jsdelivr.net/npm/alpinejs@3.4.2/dist/cdn.min.js" defer></script>
    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
    <script src="{{ mix('js/app.js') }}"></script>
-   <script src="resources/js/vendor/jquery-3.5.1.min.js"></script>
-   <script src="resources/js/vendor/modernizr-3.7.1.min.js"></script>
-   <script src="assets/js/vendor/jquery-3.5.1.min.js"></script>
-   <script src="assets/js/vendor/modernizr-3.7.1.min.js"></script>
-   <script src="assets/js/popper.min.js"></script>
-   <script src="assets/js/bootstrap.min.js"></script>
-   <script src="assets/js/slick.min.js"></script>
-   <script src="assets/js/jquery.easing.min.js"></script>
-   <script src="assets/js/scrolling-nav.js"></script>
-   <script src="assets/js/wow.min.js"></script>
-   <script src="assets/js/main.js"></script>
+   <script src="{{ asset('resources/js/vendor/jquery-3.5.1.min.js') }}"></script>
+   <script src="{{ asset('resources/js/vendor/modernizr-3.7.1.min.js') }}"></script>
+   <script src="{{ asset('assets/js/vendor/jquery-3.5.1.min.js') }}"></script>
+   <script src="{{ asset('assets/js/vendor/modernizr-3.7.1.min.js') }}"></script>
+   <script src="{{ asset('assets/js/popper.min.js') }}"></script>
+   <script src="{{ asset('assets/js/bootstrap.min.js') }}"></script>
+   <script src="{{ asset('assets/js/slick.min.js') }}"></script>
+   <script src="{{ asset('assets/js/jquery.easing.min.js') }}"></script>
+   <script src="{{ asset('assets/js/scrolling-nav.js') }}"></script>
+   <script src="{{ asset('assets/js/wow.min.js') }}"></script>
+   <script src="{{ asset('assets/js/main.js') }}"></script>
 </body>
 </html>

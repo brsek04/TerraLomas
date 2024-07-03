@@ -2,7 +2,7 @@
     <div class="max-w-screen-xl px-4 py-16 mx-auto sm:px-6 lg:px-8">
         <div class="grid grid-cols-1 gap-8 lg:grid-cols-3">
           <div>
-          <img src="images/logos/logot.png" class="mr-5 h-20 sm:h-20" alt="logo" />
+          <img src="{{asset('images/logos/logot.png')}}" class="mr-5 h-20 sm:h-20" alt="logo" />
             <p class="max-w-xs mt-4 text-sm text-gray-600">
               Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptas, accusantium.
             </p>

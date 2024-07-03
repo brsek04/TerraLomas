@@ -6468,6 +6468,24 @@ document.querySelectorAll('[data-modal-hide]').forEach(function (button) {
     modal.setAttribute('aria-hidden', 'true');
   });
 });
+document.addEventListener('DOMContentLoaded', function () {
+  console.log('tabs.js loaded');
+  var tabs = document.querySelectorAll('.nav-link');
+  tabs.forEach(function (tab) {
+    tab.addEventListener('click', function (event) {
+      event.preventDefault();
+      tabs.forEach(function (t) {
+        return t.classList.remove('active');
+      });
+      this.classList.add('active');
+      var target = document.querySelector(this.getAttribute('href'));
+      document.querySelectorAll('.tab-content').forEach(function (content) {
+        return content.classList.add('hidden');
+      });
+      target.classList.remove('hidden');
+    });
+  });
+});
 
 /***/ }),
 
