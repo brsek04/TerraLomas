@@ -65,29 +65,43 @@
                     <!-- Tab Content -->
                     <div id="tab-content" class="w-full flex justify-center">
                         <!-- cards-->
+                      
                         <div class="flex flex-wrap tab-content active gap-4" id="starters">
                             <!--inicio starters card-->
-                            <div class=" w-full sm:w-2/4 md:w-1/2 lg:w-2/4 max-w-md mx-auto">
-                                <div class=" rounded-lg bg-white shadow-xl overflow-hidden transform transition-all hover:scale-105 wow fadeInUp" data-wow-duration="1.3s" data-wow-delay="0.2s">
-                                    <div class="max-w-md mx-auto">
-                                        <div class="h-[236px]" style="background-image:url('https://img.freepik.com/free-photo/pasta-spaghetti-with-shrimps-sauce_1220-5072.jpg?w=2000&t=st=1678041911~exp=1678042511~hmac=e4aa55e70f8c231d4d23832a611004f86eeb3b6ca067b3fa0c374ac78fe7aba6'); background-size:cover; background-position:center"></div>
-                                        <div class="p-4 sm:p-6">
-                                            <p class="font-bold text-gray-700 text-[22px] leading-7 mb-1">Spagetti with shrimp sauce</p>
-                                            <div class="flex flex-row">
-                                                <p class="text-[#3C3C4399] text-[17px] mr-2 line-through">CLP 700</p>
-                                                <p class="text-[17px] font-bold text-[#0FB478]">MVR 700</p>
+                            @foreach($menu->dishes as $dish)
+                            @if($dish->category == 'Para empezar')
+                                <div class="w-full sm:w-2/4 md:w-1/2 lg:w-2/4 max-w-md mx-auto">
+                                    <div class="rounded-lg bg-white shadow-xl overflow-hidden transform transition-all hover:scale-105 wow fadeInUp" data-wow-duration="1.3s" data-wow-delay="0.2s">
+                                        <div class="max-w-md mx-auto">
+                                            <div class="h-[236px]" style="background-image:url('{{ asset($dish->photo) }}'); background-size:cover; background-position:center"></div>
+                                            <div class="p-4 sm:p-6">
+                                                <p class="font-bold text-gray-700 text-[22px] leading-7 mb-1">{{ $dish->name }}</p>
+                                                <div class="flex flex-row">
+                                                    <p class="text-[#3C3C4399] text-[17px] mr-2 line-through">CLP 700</p>
+                                                    <p class="text-[17px] font-bold text-[#0FB478]">MVR 700</p>
+                                                </div>
+                                                <p class="text-[#7C7C80] font-[15px] mt-6">{{ $dish->description }}</p>
+                                                <form action="{{ route('cart.add') }}" method="POST">
+                                                    @csrf
+                                                    <input type="hidden" value="{{ $dish->id }}" name="id">
+                                                    <input type="hidden" value="{{ $dish->name }}" name="name">
+                                                    <input type="hidden" value="{{ $dish->price }}" name="price">
+                                                    <input type="hidden" value="{{ $dish->photo }}" name="photo">
+                                                    <input type="hidden" value="dish" name="type">
+                                                    <input type="hidden" value="1" name="quantity">
+                                                    <button type="submit" class="mt-4 flex items-center justify-center w-full bg-orange-500 hover:bg-orange-800 focus:ring-4 focus:outline-none focus:ring-orange-300 text-white font-medium rounded-lg text-sm px-5 py-2.5">
+                                                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-4 h-4 mr-2">
+                                                            <path stroke-linecap="round" stroke-linejoin="round" d="M2.25 3h1.386c.51 0 .955.343 1.087.835l.383 1.437M7.5 14.25a3 3 0 0 0-3 3h15.75m-12.75-3h11.218c1.121-2.3 2.1-4.684 2.924-7.138a60.114 60.114 0 0 0-16.536-1.84M7.5 14.25 5.106 5.272M6 20.25a.75.75 0 1 1-1.5 0 .75.75 0 0 1 1.5 0Zm12.75 0a.75.75 0 1 1-1.5 0 .75.75 0 0 1 1.5 0Z" />
+                                                        </svg>  
+                                                        Agregar al carrito
+                                                    </button>
+                                                </form>
                                             </div>
-                                            <p class="text-[#7C7C80] font-[15px] mt-6">Our shrimp sauce is made with mozarella, a creamy taste of shrimp with extra kick of spices.</p>
-                                            <button type="submit" class="mt-4 flex items-center justify-center w-full bg-orange-500 hover:bg-orange-800 focus:ring-4 focus:outline-none focus:ring-orange-300 text-white font-medium rounded-lg text-sm px-5 py-2.5">
-                                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-4 h-4 mr-2">
-                                                    <path stroke-linecap="round" stroke-linejoin="round" d="M2.25 3h1.386c.51 0 .955.343 1.087.835l.383 1.437M7.5 14.25a3 3 0 0 0-3 3h15.75m-12.75-3h11.218c1.121-2.3 2.1-4.684 2.924-7.138a60.114 60.114 0 0 0-16.536-1.84M7.5 14.25 5.106 5.272M6 20.25a.75.75 0 1 1-1.5 0 .75.75 0 0 1 1.5 0Zm12.75 0a.75.75 0 1 1-1.5 0 .75.75 0 0 1 1.5 0Z" />
-                                                </svg>  
-                                                Agregar al carrito
-                                            </button>
                                         </div>
                                     </div>
                                 </div>
-                            </div>
+                            @endif
+                        @endforeach
                             <!--fin starters card-->
                             <div class=" w-full sm:w-2/4 md:w-1/2 lg:w-2/4 max-w-md mx-auto">
                                 <div class="max-w-md mx-auto bg-white rounded-3xl shadow-xl overflow-hidden transform transition-all hover:scale-105">
