@@ -14,7 +14,10 @@ class CategoriesTableSeeder extends Seeder
      */
     public function run()
     {
-        Category::create(['name' => 'Category 1']);
-        Category::create(['name' => 'Category 2']);
+        Category::create(['name' => 'Para empezar']);
+        Category::create(['name' => 'Once']);
+        Category::create(['name' => 'Desayuno']);
+        Category::create(['name' => 'Almuerzo']);
+        Category::create(['name' => 'Bebestibles']);
     }
 }
