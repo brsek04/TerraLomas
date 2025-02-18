@@ -2,7 +2,7 @@
     <div class="w-full px-1 lg:px-5 lg:py-2.5 lg:pl-3 bg-black flex justify-between items-center">
         <div class="flex items-center">
             <a href="#" class="logo ml-16 text-white dark:text-white transform ease-in-out duration-500 flex-none h-full flex items-center justify-center">
-                <strong>TerraLomas</strong>
+                <strong>Miminuta</strong>
             </a>
         </div>
         <div class="text-right flex items-center px-10">

@@ -65,7 +65,7 @@
        </div>
        <div  class = "flex items-center space-x-3 py-2 group bg-gradient-to-r dark:from-cyan-500 dark:to-blue-500 from-orange-700 via-red-500 to-orange-500  pl-10 pr-2  rounded-full text-white  ">
            <div class= "transform ease-in-out duration-300 mr-12 font-bold">
-               TerraAdmin
+               Miminuta
            </div>
        </div>
    </div>
@@ -116,7 +116,7 @@
          </svg>                      
          <div>
              <button aria-controls="dropdown-example" data-collapse-toggle="dropdown-example" class="flex items-center">
-                  Administración   <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class=" p-1 size-5">
+                  Planificación   <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class=" p-1 size-5">
                   <path stroke-linecap="round" stroke-linejoin="round" d="m19.5 8.25-7.5 7.5-7.5-7.5" />
                 </svg>
             </button>
@@ -172,7 +172,7 @@
          </svg>             
            <div>
             <a href="/dishes">
-               Platos
+               CRUD1
             </a>
            </div>
        </div>
@@ -183,7 +183,7 @@
          </svg>             
            <div>
             <a href="/beverages">
-               Bebestibles
+               CRUD2
             </a>
            </div>
        </div>
@@ -192,16 +192,25 @@
             <path stroke-linecap="round" d="M560-564v-68q33-14 67.5-21t72.5-7q26 0 51 4t49 10v64q-24-9-48.5-13.5T700-600q-38 0-73 9.5T560-564Zm0 220v-68q33-14 67.5-21t72.5-7q26 0 51 4t49 10v64q-24-9-48.5-13.5T700-380q-38 0-73 9t-67 27Zm0-110v-68q33-14 67.5-21t72.5-7q26 0 51 4t49 10v64q-24-9-48.5-13.5T700-490q-38 0-73 9.5T560-454ZM260-320q47 0 91.5 10.5T440-278v-394q-41-24-87-36t-93-12q-36 0-71.5 7T120-692v396q35-12 69.5-18t70.5-6Zm260 42q44-21 88.5-31.5T700-320q36 0 70.5 6t69.5 18v-396q-33-14-68.5-21t-71.5-7q-47 0-93 12t-87 36v394Zm-40 118q-48-38-104-59t-116-21q-42 0-82.5 11T100-198q-21 11-40.5-1T40-234v-482q0-11 5.5-21T62-752q46-24 96-36t102-12q58 0 113.5 15T480-740q51-30 106.5-45T700-800q52 0 102 12t96 36q11 5 16.5 15t5.5 21v482q0 23-19.5 35t-40.5 1q-37-20-77.5-31T700-240q-60 0-116 21t-104 59ZM280-494Z"/></svg>             
            <div>
             <a href="/menus">
-               Menú
+               CRUD3
             </a>
            </div>
+
+
+
+
+           
        </div>
+
+
+       
+
       <div class =  "hover:ml-4 w-full text-white hover:text-purple-500 dark:hover:text-blue-500 bg-[#1E293B] p-2 pl-8 rounded-full transform ease-in-out duration-300 flex flex-row items-center space-x-3">
          <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" viewBox="0 -960 960 960" width="24px" fill="#FFFFFF">
             <path stroke-linecap="round" d="M560-564v-68q33-14 67.5-21t72.5-7q26 0 51 4t49 10v64q-24-9-48.5-13.5T700-600q-38 0-73 9.5T560-564Zm0 220v-68q33-14 67.5-21t72.5-7q26 0 51 4t49 10v64q-24-9-48.5-13.5T700-380q-38 0-73 9t-67 27Zm0-110v-68q33-14 67.5-21t72.5-7q26 0 51 4t49 10v64q-24-9-48.5-13.5T700-490q-38 0-73 9.5T560-454ZM260-320q47 0 91.5 10.5T440-278v-394q-41-24-87-36t-93-12q-36 0-71.5 7T120-692v396q35-12 69.5-18t70.5-6Zm260 42q44-21 88.5-31.5T700-320q36 0 70.5 6t69.5 18v-396q-33-14-68.5-21t-71.5-7q-47 0-93 12t-87 36v394Zm-40 118q-48-38-104-59t-116-21q-42 0-82.5 11T100-198q-21 11-40.5-1T40-234v-482q0-11 5.5-21T62-752q46-24 96-36t102-12q58 0 113.5 15T480-740q51-30 106.5-45T700-800q52 0 102 12t96 36q11 5 16.5 15t5.5 21v482q0 23-19.5 35t-40.5 1q-37-20-77.5-31T700-240q-60 0-116 21t-104 59ZM280-494Z"/></svg>
             <div>
                <button aria-controls="dropdown-menu" data-collapse-toggle="dropdown-menu" class="flex items-center">
-                  Menú Tipo
+                  Módulo Clinico
                   <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class=" p-1 size-5">
                   <path stroke-linecap="round" stroke-linejoin="round" d="m19.5 8.25-7.5 7.5-7.5-7.5" />
                 </svg>
@@ -245,8 +254,129 @@
                   </a>              
                </div>
             </li>
+
+
+
+            
             
          </ul>
+
+
+         
+       <div class =  "hover:ml-4 w-full text-white hover:text-purple-500 dark:hover:text-blue-500 bg-[#1E293B] p-2 pl-8 rounded-full transform ease-in-out duration-300 flex flex-row items-center space-x-3">
+         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-4 h-4">
+             <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 5.25h16.5m-16.5 4.5h16.5m-16.5 4.5h16.5m-16.5 4.5h16.5" />
+         </svg>                      
+         <div>
+             <button aria-controls="dropdown-examplekk" data-collapse-toggle="dropdown-examplekk" class="flex items-center">
+                  Reportes  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class=" p-1 size-5">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="m19.5 8.25-7.5 7.5-7.5-7.5" />
+                </svg>
+            </button>
+         </div>
+       </div>
+       <ul id="dropdown-examplekk" class="hidden py-2 space-y-2 bg-gray-700">
+         <li>
+            <div class =  "hover:ml-4 w-full transition  hover:bg-gray-500  text-white hover:text-purple-500 dark:hover:text-blue-500 bg-gray-700 p-2 pl-10 rounded-full transform ease-in-out duration-300 flex flex-row items-center space-x-3">
+               <a href="/suppliers" class="flex items-center ">
+                  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-4 h-4">
+                     <path stroke-linecap="round" stroke-linejoin="round" d="M8.25 18.75a1.5 1.5 0 0 1-3 0m3 0a1.5 1.5 0 0 0-3 0m3 0h6m-9 0H3.375a1.125 1.125 0 0 1-1.125-1.125V14.25m17.25 4.5a1.5 1.5 0 0 1-3 0m3 0a1.5 1.5 0 0 0-3 0m3 0h1.125c.621 0 1.129-.504 1.09-1.124a17.902 17.902 0 0 0-3.213-9.193 2.056 2.056 0 0 0-1.58-.86H14.25M16.5 18.75h-2.25m0-11.177v-.958c0-.568-.422-1.048-.987-1.106a48.554 48.554 0 0 0-10.026 0 1.106 1.106 0 0 0-.987 1.106v7.635m12-6.677v6.677m0 4.5v-4.5m0 0h-12" />
+                  </svg>
+                  <div class="pl-2">
+                        Reporte simple
+                  </div>  
+               </a>              
+            </div>
+         </li>
+         <li>
+            <div class =  "hover:ml-4 w-full transition  hover:bg-gray-500  text-white hover:text-purple-500 dark:hover:text-blue-500 bg-gray-700 p-2 pl-10 rounded-full transform ease-in-out duration-300 flex flex-row items-center space-x-3">
+               <a href="/companies" class="flex items-center ">
+                  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-4 h-4">
+                     <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 21h16.5M4.5 3h15M5.25 3v18m13.5-18v18M9 6.75h1.5m-1.5 3h1.5m-1.5 3h1.5m3-6H15m-1.5 3H15m-1.5 3H15M9 21v-3.375c0-.621.504-1.125 1.125-1.125h3.75c.621 0 1.125.504 1.125 1.125V21" />
+                   </svg>                                     
+                  <div class="pl-2">
+                     <a href="/companies">
+                        Reporte avanzado
+                     </a>
+                       
+                  </div>  
+               </a>              
+            </div>
+         </li>
+         <li>
+            <div class =  "hover:ml-4 w-full transition  hover:bg-gray-500  text-white hover:text-purple-500 dark:hover:text-blue-500 bg-gray-700 p-2 pl-10 rounded-full transform ease-in-out duration-300 flex flex-row items-center space-x-3">
+               <a href="/branches" class="flex items-center ">
+                  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-4 h-4">
+                     <path stroke-linecap="round" stroke-linejoin="round" d="M8.25 21v-4.875c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21m0 0h4.5V3.545M12.75 21h7.5V10.75M2.25 21h1.5m18 0h-18M2.25 9l4.5-1.636M18.75 3l-1.5.545m0 6.205 3 1m1.5.5-1.5-.5M6.75 7.364V3h-3v18m3-13.636 10.5-3.819" />
+                   </svg>                                                       
+                  <div class="pl-2">
+                     <a href="/branches">
+                        Reporte de ventas
+                     </a>
+                  </div>  
+               </a>              
+            </div>
+         </li>
+      </ul>
+
+      <div class =  "hover:ml-4 w-full text-white hover:text-purple-500 dark:hover:text-blue-500 bg-[#1E293B] p-2 pl-8 rounded-full transform ease-in-out duration-300 flex flex-row items-center space-x-3">
+         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-4 h-4">
+             <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 5.25h16.5m-16.5 4.5h16.5m-16.5 4.5h16.5m-16.5 4.5h16.5" />
+         </svg>                      
+         <div>
+             <button aria-controls="dropdown-examplesedile" data-collapse-toggle="dropdown-examplesedile" class="flex items-center">
+                  Sedile  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class=" p-1 size-5">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="m19.5 8.25-7.5 7.5-7.5-7.5" />
+                </svg>
+            </button>
+         </div>
+       </div>
+       <ul id="dropdown-examplesedile" class="hidden py-2 space-y-2 bg-gray-700">
+         <li>
+            <div class =  "hover:ml-4 w-full transition  hover:bg-gray-500  text-white hover:text-purple-500 dark:hover:text-blue-500 bg-gray-700 p-2 pl-10 rounded-full transform ease-in-out duration-300 flex flex-row items-center space-x-3">
+               <a href="/suppliers" class="flex items-center ">
+                  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-4 h-4">
+                     <path stroke-linecap="round" stroke-linejoin="round" d="M8.25 18.75a1.5 1.5 0 0 1-3 0m3 0a1.5 1.5 0 0 0-3 0m3 0h6m-9 0H3.375a1.125 1.125 0 0 1-1.125-1.125V14.25m17.25 4.5a1.5 1.5 0 0 1-3 0m3 0a1.5 1.5 0 0 0-3 0m3 0h1.125c.621 0 1.129-.504 1.09-1.124a17.902 17.902 0 0 0-3.213-9.193 2.056 2.056 0 0 0-1.58-.86H14.25M16.5 18.75h-2.25m0-11.177v-.958c0-.568-.422-1.048-.987-1.106a48.554 48.554 0 0 0-10.026 0 1.106 1.106 0 0 0-.987 1.106v7.635m12-6.677v6.677m0 4.5v-4.5m0 0h-12" />
+                  </svg>
+                  <div class="pl-2">
+                        formulas lacteas
+                  </div>  
+               </a>              
+            </div>
+         </li>
+         <li>
+            <div class =  "hover:ml-4 w-full transition  hover:bg-gray-500  text-white hover:text-purple-500 dark:hover:text-blue-500 bg-gray-700 p-2 pl-10 rounded-full transform ease-in-out duration-300 flex flex-row items-center space-x-3">
+               <a href="/companies" class="flex items-center ">
+                  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-4 h-4">
+                     <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 21h16.5M4.5 3h15M5.25 3v18m13.5-18v18M9 6.75h1.5m-1.5 3h1.5m-1.5 3h1.5m3-6H15m-1.5 3H15m-1.5 3H15M9 21v-3.375c0-.621.504-1.125 1.125-1.125h3.75c.621 0 1.125.504 1.125 1.125V21" />
+                   </svg>                                     
+                  <div class="pl-2">
+                     <a href="/companies">
+                        formulas enterales
+                     </a>
+                       
+                  </div>  
+               </a>              
+            </div>
+         </li>
+         <li>
+            <div class =  "hover:ml-4 w-full transition  hover:bg-gray-500  text-white hover:text-purple-500 dark:hover:text-blue-500 bg-gray-700 p-2 pl-10 rounded-full transform ease-in-out duration-300 flex flex-row items-center space-x-3">
+               <a href="/branches" class="flex items-center ">
+                  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-4 h-4">
+                     <path stroke-linecap="round" stroke-linejoin="round" d="M8.25 21v-4.875c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21m0 0h4.5V3.545M12.75 21h7.5V10.75M2.25 21h1.5m18 0h-18M2.25 9l4.5-1.636M18.75 3l-1.5.545m0 6.205 3 1m1.5.5-1.5-.5M6.75 7.364V3h-3v18m3-13.636 10.5-3.819" />
+                   </svg>                                                       
+                  <div class="pl-2">
+                     <a href="/branches">
+                        distribución
+                     </a>
+                  </div>  
+               </a>              
+            </div>
+         </li>
+      </ul>
+
+
+
    </div>
    <!-- MINI SIDEBAR-->
    <div class= "mini mt-20 hidden flex-col space-y-2 w-full h-[calc(100vh)]">

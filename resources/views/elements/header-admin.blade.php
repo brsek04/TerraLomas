@@ -9,7 +9,7 @@
                     </svg>
                 </button>
                 <a href="#" class="logo ml-16 dark:text-white transform ease-in-out duration-500 flex-none h-full flex items-center justify-center">
-                    <strong>TerraAdmin</strong>
+                    <strong>MiminutaAdmin</strong>
                 </a>
             </div>
             <div class="flex items-center">
